@@ -1,0 +1,20 @@
+$footer-height: $spacing * 2;
+
+footer {
+  background-color: $gray-dark-1;
+  height: $footer-height;
+  margin-top: $footer-height * -1;
+  position: relative;
+  width: 100%;
+  z-index: 1;
+  .footer {
+    .copyright {
+      text-align: center;
+      p {
+        color: $white;
+        font-size: $font-size-small-2;
+        line-height: $footer-height;
+      }
+    }
+  }
+}
