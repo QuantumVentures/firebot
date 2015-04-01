@@ -5,12 +5,16 @@ gem "rails", "4.2.0"
 gem "attr_extras"
 gem "bcrypt", "~> 3.1.7"
 gem "dotenv-rails"
+gem "foreman"
 gem "pg"
 gem "unicorn"
 
 # Frontend
+gem "bourbon"
 gem "coffee-rails", "~> 4.1.0"
+gem "haml-rails"
 gem "jquery-rails"
+gem "neat"
 gem "sass-rails", "~> 5.0"
 gem "uglifier", ">= 1.3.0"
 

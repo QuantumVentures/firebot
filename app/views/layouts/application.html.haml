@@ -1,0 +1,16 @@
+!!! 5
+%html{ lang: "en" }
+  %head
+    %title
+      = title
+    = favicon_link_tag "favicon.png"
+    = stylesheet_link_tag "application", media: :all
+    = csrf_meta_tags
+    %meta{ content: mobile_meta_content, name: "viewport" }
+  = content_tag :body, body_attributes do
+    .wrapper
+      = render "header"
+      .content
+        = yield
+    = render "footer"
+    = javascript_include_tag "application"
