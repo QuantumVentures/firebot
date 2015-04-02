@@ -1,7 +1,3 @@
-@mixin border-box {
-  box-sizing: border-box;
-}
-
 @mixin gradient($start, $end) {
   background: -webkit-linear-gradient($start, $end);
   background: -moz-linear-gradient($start, $end);
