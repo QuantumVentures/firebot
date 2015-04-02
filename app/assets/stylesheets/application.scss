@@ -1,8 +1,10 @@
 // Libraries
+// -----------------------------------------------------------------------------
 @import "bourbon";
 @import "neat";
 
 // Variables
+// -----------------------------------------------------------------------------
 @import "variables/colors";
 @import "variables/fonts";
 @import "variables/spacing";
@@ -10,12 +12,29 @@
 @import "variables/styles";
 
 // Mixins
+// -----------------------------------------------------------------------------
 @import "mixins/general";
 @import "mixins/media_queries";
 
 // Shared
+// -----------------------------------------------------------------------------
 @import "shared/main";
+@import "shared/form/**/*";
 
+// Views
+// -----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 // Application
-@import "application/header";
-@import "application/footer";
+// -----------------------------------------------------------------------------
+@import "views/application/header";
+@import "views/application/footer";
+
+// Sessions
+// -----------------------------------------------------------------------------
+// New
+@import "views/sessions/new";
+
+// Users
+// -----------------------------------------------------------------------------
+// New
+@import "views/users/new";

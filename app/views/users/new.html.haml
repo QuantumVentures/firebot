@@ -1,0 +1,25 @@
+= content_for :form_content do
+  %h1
+    Join Firebot Today
+  = form_for @user do |f|
+    .form__field
+      = f.text_field :full_name, autocomplete: "off",
+        class: "form__input--green form__input--medium form__input--width",
+        placeholder: "Full name"
+    .form__field
+      = f.text_field :email, autocomplete: "off",
+        class: "form__input--green form__input--medium form__input--width",
+        placeholder: "Email", type: "email"
+    .form__field
+      = f.password_field :password, autocomplete: "off",
+        class: "form__input--green form__input--medium form__input--width",
+        placeholder: "Password"
+    = f.button "Sign up",
+      class: "form__button--green form__buton--medium form__buton--width"
+
+= content_for :form_footer do
+  %p
+    Already have an account?
+    = link_to "Login", new_session_path
+
+= render "shared/forms/center"

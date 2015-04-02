@@ -1,6 +1,10 @@
-%header
-  .header
-    = link_to "Firebot", root_path, class: "logo"
-    %nav.right
-      = link_to "Login", "#"
-      = link_to "Sign up", "#"
+- if content_for? :header
+  = yield :header
+- else
+  %header
+    .header
+      .header__logo
+        = link_to "Firebot", root_path
+      .header__navigation--right
+        = link_to "Login", "#"
+        = link_to "Sign up", new_user_path

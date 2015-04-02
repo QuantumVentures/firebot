@@ -1,0 +1,32 @@
+.form__field {
+  margin-bottom: $spacing;
+}
+.form__input {
+  @include border-radius;
+  @include browser(appearance, none);
+  @include transition;
+  border-color: $gray-light-3;
+  border-style: solid;
+  border-width: 1px;
+  color: $gray-dark-1;
+  font-family: $font-family;
+  outline: none;
+  &:focus {
+    border-color: $gray-light-1;
+  }
+}
+.form__input--green {
+  &:focus {
+    border-color: $green;
+  }
+}
+.form__input--medium {
+  @extend .form__input;
+  border-width: 2px;
+  font-size: $font-size-medium-1;
+  padding: $spacing * 0.75 $spacing;
+}
+.form__input--width {
+  @extend .form__input;
+  width: 100%;
+}

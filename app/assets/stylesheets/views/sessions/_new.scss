@@ -1,0 +1,19 @@
+.sessions.new {
+  background-color: $gray-dark-1;
+  .form__footer--left {
+    float: left;
+    text-align: left;
+    a {
+      color: $gray-medium-3;
+      &:hover {
+        color: $blue-hover;
+      }
+    }
+  }
+  .form__footer--right {
+    float: right;
+    p {
+      text-align: right;
+    }
+  }
+}

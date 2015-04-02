@@ -1,0 +1,36 @@
+$header-height: $spacing * 3;
+
+header {
+  background-color: $blue;
+  height: $header-height;
+  width: 100%;
+  .header {
+    padding: 0 $spacing;
+    .header__logo {
+      a {
+        @include existence-light;
+        color: $white;
+        display: block;
+        float: left;
+        font-size: $font-size-medium-2;
+        font-weight: $font-weight-medium;
+        line-height: $header-height;
+      }
+    }
+    .header__navigation {
+      background: transparent;
+    }
+    .header__navigation--right {
+      @extend .header__navigation;
+      float: right;
+      a {
+        display: block;
+        color: $white;
+        float: left;
+        font-size: $font-size-normal-1;
+        line-height: $header-height;
+        margin-left: $spacing;
+      }
+    }
+  }
+}

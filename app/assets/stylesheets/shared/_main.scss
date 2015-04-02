@@ -5,13 +5,12 @@ html, body {
 }
 
 body {
-  @include roboto-light;
+  background-color: $background-color;
   box-sizing: border-box;
-  // font-family: $font-family;
+  font-family: $font-family;
   font-weight: $font-weight-normal;
   overflow-x: hidden;
   .wrapper {
-    background-color: $background-color;
     bottom: 100%;
     left: 0;
     min-height: 100%;
@@ -21,15 +20,25 @@ body {
     top: 0;
     z-index: 0;
     .content  {
+      color: $gray-dark-1;
     }
   }
 }
 
 a {
+  color: $blue;
   text-decoration: none;
+  &:hover {
+    color: $blue-hover;
+  }
+}
+
+h1 {
+  margin: 0;
 }
 
 p {
+  font-size: $font-size-normal-1;
   margin: 0;
 }
 

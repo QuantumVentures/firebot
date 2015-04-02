@@ -1,7 +1,8 @@
 $black: rgb(0, 0, 0);
 
-$blue: rgb(119, 158, 203);
-$blue-hover: rgb(109, 148, 193);
+$blue: rgb(119, 158, 203); // HSL: 212° 45% 63%
+$blue-hover: hsl(212, 45, 53);
+// $blue-hover: rgb(109, 148, 193);
 
 $gray-dark-1: rgb(40, 40, 40);
 $gray-dark-2: rgb(60, 60, 60);
@@ -14,9 +15,11 @@ $gray-light-2: rgb(200, 200, 200);
 $gray-light-3: rgb(220, 220, 220);
 $gray: rgb(207, 207, 196);
 
-$green: rgb(119, 190, 119);
+// $green: rgb(119, 190, 119);
+$green: rgb(119, 221, 119); // HSL: 120° 60% 67%
+$green-hover: hsl(120, 60, 57);
 $green-dark: rgb(3, 192, 60);
-$green-hover: rgb(109, 180, 109);
+// $green-hover: rgb(109, 180, 109);
 
 $red: rgb(255, 105, 97);
 $red-dark: rgb(194, 59, 34);
