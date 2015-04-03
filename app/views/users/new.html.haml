@@ -5,7 +5,7 @@
     .form__field
       = f.text_field :full_name, autocomplete: "off",
         class: "form__input--green form__input--medium form__input--width",
-        placeholder: "Full name"
+        placeholder: "First & last name"
     .form__field
       = f.text_field :email, autocomplete: "off",
         class: "form__input--green form__input--medium form__input--width",
@@ -20,6 +20,6 @@
 = content_for :form_footer do
   %p
     Already have an account?
-    = link_to "Login", new_session_path
+    = link_to "Login", login_path
 
 = render "shared/forms/center"

@@ -2,6 +2,8 @@ class UsersController < ApplicationController
   def create
     @user = User.new permitted
     if @user.save
+      log_in @user
+      redirect_to root_path
     else
       @errors = stringify_errors(@user.errors)
       render "new"

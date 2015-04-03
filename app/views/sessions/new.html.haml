@@ -1,16 +1,15 @@
 = content_for :form_content do
   %h1
     Login to Firebot
-  = form_tag do
+  = form_tag sessions_path do
     .form__field
       = text_field_tag :email, "",
         class: "form__input--green form__input--medium form__input--width",
         placeholder: "Email", type: "email"
     .form__field
-      = form_tag do
-        = password_field_tag :password, "",
-          class: "form__input--green form__input--medium form__input--width",
-          placeholder: "Password"
+      = password_field_tag :password, "",
+        class: "form__input--green form__input--medium form__input--width",
+        placeholder: "Password"
     = button_tag "Login",
       class: "form__button--green form__buton--medium form__buton--width"
 
