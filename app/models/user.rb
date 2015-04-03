@@ -18,6 +18,8 @@ class User < ActiveRecord::Base
   before_save { self.email = email.downcase }
   before_validation :parse_full_name, on: :create
 
+  alias_method :apps, :backend_apps
+
   private
 
   def parse_full_name

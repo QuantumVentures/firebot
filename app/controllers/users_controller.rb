@@ -7,7 +7,7 @@ class UsersController < ApplicationController
       log_in @user
       redirect_to new_backend_app_path
     else
-      @errors = stringify_errors @user.errors
+      @errors = stringify_single_error @user.errors
       render "new"
     end
   end
@@ -21,10 +21,5 @@ class UsersController < ApplicationController
 
   def permitted
     params.require(:user).permit :email, :full_name, :password
-  end
-
-  def stringify_errors(errors)
-    error = errors.first
-    error[0].to_s.split("_").join(" ").capitalize + " #{error[1]}"
   end
 end
