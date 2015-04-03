@@ -6,16 +6,16 @@ class SessionsController < ApplicationController
       redirect_to root_path
     else
       @errors = "Invalid email and/or password"
-      render "new"
+      render "login"
     end
   end
 
-  def destroy
-    log_out
-    redirect_to root_path
+  def login
+    @title = "Login"
   end
 
-  def new
-    @title = "Login"
+  def logout
+    log_out
+    redirect_to root_path
   end
 end
