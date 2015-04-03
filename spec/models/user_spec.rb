@@ -14,6 +14,8 @@ describe User do
 
   it_should_behave_like :crud
 
+  it { should have_many :backend_apps }
+
   context "when updating" do
     let(:password) { "password" }
     let(:user)     { create :user }

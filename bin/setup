@@ -13,8 +13,10 @@ Dir.chdir APP_ROOT do
   return unless system "gem install bundler --conservative"
   return unless system "bundle check || bundle install --path vendor/bundle --jobs 7"
 
+  fresh = ARGV.first == "fresh"
   puts "\n==> Preparing database"
   tasks = %w(db:create db:migrate db:seed)
-  tasks.unshift "db:drop" if ARGV.first == "fresh"
+  tasks.unshift "db:drop" if fresh
   return unless system "bundle exec rake #{tasks.join " "}"
+  return unless system "bundle exec rake db:drop RAILS_ENV=test" if fresh
 end
