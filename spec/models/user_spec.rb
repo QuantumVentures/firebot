@@ -13,4 +13,25 @@ describe User do
   it { should be_valid }
 
   it_should_behave_like :crud
+
+  context "when updating" do
+    let(:password) { "password" }
+    let(:user)     { create :user }
+
+    before { user.assign_attributes password: password }
+
+    context "with valid password" do
+      it "should be valid" do
+        expect(user.valid?).to be true
+      end
+    end
+
+    context "with invalid password" do
+      let(:password) { "1" }
+
+      it "should not be valid" do
+        expect(user.valid?).to be false
+      end
+    end
+  end
 end
