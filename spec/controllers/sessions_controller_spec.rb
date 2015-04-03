@@ -29,7 +29,7 @@ describe SessionsController do
   end
 
   describe "GET #logout" do
-    before { user }
+    before { controller.log_in user }
 
     it "should log_out user" do
       expect(controller).to receive :log_out

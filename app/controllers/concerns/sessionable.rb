@@ -1,4 +1,6 @@
-module SessionsHelper
+module Sessionable
+  extend ActiveSupport::Concern
+
   def current_user
     @current_user ||= User.find_by(id: session[:user_id])
   end
@@ -14,5 +16,13 @@ module SessionsHelper
 
   def logged_in?
     !current_user.nil?
+  end
+
+  def require_login
+    redirect_to(new_user_path) unless logged_in?
+  end
+
+  def require_logout
+    redirect_to(root_path) if logged_in?
   end
 end

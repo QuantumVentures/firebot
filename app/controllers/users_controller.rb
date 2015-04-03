@@ -1,9 +1,11 @@
 class UsersController < ApplicationController
+  before_action :require_logout
+
   def create
     @user = User.new permitted
     if @user.save
       log_in @user
-      redirect_to root_path
+      redirect_to new_backend_app_path
     else
       @errors = stringify_errors @user.errors
       render "new"

@@ -1,4 +1,7 @@
 class SessionsController < ApplicationController
+  before_action :require_login,  only: :logout
+  before_action :require_logout, only: %i(create login)
+
   def create
     user = User.find_by(email: params[:email])
     if user && user.authenticate(params[:password])
