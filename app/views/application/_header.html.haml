@@ -7,6 +7,7 @@
         = link_to "Firebot", root_path
       .header__navigation--right
         - if current_user
+          = link_to "+ App", new_backend_app_path
           = link_to "Logout", logout_path
         - else
           = link_to "Login", login_path

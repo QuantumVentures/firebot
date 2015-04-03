@@ -11,5 +11,7 @@ describe BackendApp do
 
   it_should_behave_like :crud
 
+  it { should have_many :logs }
+
   it { should belong_to :user }
 end

@@ -15,6 +15,12 @@ FactoryGirl.define do
     user
   end
 
+  factory :log do
+    description { generate :name }
+    loggable factory: :backend_app
+    responsible factory: :user
+  end
+
   factory :user do
     email
     first_name { generate :name }

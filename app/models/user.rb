@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
   validates_presence_of :first_name, :last_name
 
   has_many :backend_apps
+  has_many :logs, as: :responsible
 
   has_secure_password validations: false
 
