@@ -1,7 +1,8 @@
 require "rails_helper"
 
 describe BackendAppsController do
-  let(:user) { create :user }
+  let(:backend_app) { create :backend_app, user: user }
+  let(:user)        { create :user }
 
   before { controller.log_in user }
 
@@ -25,6 +26,24 @@ describe BackendAppsController do
       it "should have errors" do
         action
         expect(assigns :errors).not_to be_nil
+      end
+    end
+  end
+
+  describe "GET describe" do
+    let(:backend_app_id) { backend_app.id }
+
+    before { get :describe, id: backend_app_id }
+
+    context "when app is found" do
+      it { should respond_with :success }
+    end
+
+    context "when app is not found" do
+      let(:backend_app_id) { 0 }
+
+      it "should redirect to new_backend_app_path" do
+        expect(controller).to redirect_to new_backend_app_path
       end
     end
   end
