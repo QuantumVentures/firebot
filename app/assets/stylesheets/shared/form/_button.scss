@@ -1,6 +1,7 @@
 .form__button {
   @include border-radius;
   @include browser(appearance, none);
+  @include roboto-light;
   @include transition;
   border: none;
   border-left-width: 0;
@@ -9,7 +10,6 @@
   border-bottom-width: 2px;
   border-style: solid;
   color: $white;
-  font-family: $font-family;
   font-size: $font-size-normal-1;
   padding: $spacing * 0.5 $spacing;
   &:hover {

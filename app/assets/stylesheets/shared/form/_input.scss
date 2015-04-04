@@ -1,12 +1,12 @@
 .form__input {
   @include border-radius;
   @include browser(appearance, none);
+  @include roboto-light;
   @include transition;
   border-color: $gray-light-3;
   border-style: solid;
   border-width: 1px;
   color: $gray-dark-1;
-  font-family: $font-family;
   font-size: $font-size-normal-1;
   outline: none;
   padding: $spacing * 0.5;

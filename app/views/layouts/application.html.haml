@@ -10,6 +10,7 @@
   = content_tag :body, body_attributes do
     .wrapper
       = render "header"
+      = render "flash"
       .content
         = yield
     = render "footer"

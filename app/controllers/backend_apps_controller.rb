@@ -5,6 +5,7 @@ class BackendAppsController < ApplicationController
   def create
     @app = current_user.apps.new permitted
     if @app.save
+      flash[:success] = "App successfully created"
       redirect_to describe_backend_app_path @app
     else
       @errors = stringify_single_error @app.errors
