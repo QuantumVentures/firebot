@@ -19,7 +19,7 @@ class UsersController < ApplicationController
 
   private
 
-  def permitted
-    params.require(:user).permit :email, :full_name, :password
+  def permitted_params
+    %i(email full_name password)
   end
 end

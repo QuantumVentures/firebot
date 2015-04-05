@@ -1,0 +1,31 @@
+.content__body
+  %h3
+    Tell us about the features of "#{@app.name}"
+  .content__body__list
+    %p
+      Use a single sentence to describe each feature, for example:
+    %ul{ type: "circle" }
+      %li
+        %p
+          Parents can rent cats or dogs by the hour from pet stores
+      %li
+        %p
+          Pet stores have a directory of all the cats and dogs for rent
+      %li
+        %p
+          Each cat or dog has a name, an hourly rate, and reviews
+      %li
+        %p
+          A review is written by the parent for the cat or dog
+    .form
+      - if @errors
+        .form__errors
+          %p
+            = @errors
+      = form_tag describe_backend_app_path @app do
+        = hidden_field_tag :backend_app_id, @app.id
+        .form__field
+          = text_area_tag :descriptions, "",
+            class: "form__textarea--width",
+            placeholder: "Describe your features here..."
+        = button_tag "Save Features", class: "form__button"

@@ -10,9 +10,11 @@ Rails.application.routes.draw do
 
   resources :backend_apps, only: %i(create new), path: "apps" do
     member do
-      get :describe
+      post :describe
+      get  :descriptions
+      get  :status
     end
   end
   resources :sessions, only: %i(create)
-  resources :users, only: %i(create edit update)
+  resources :users,    only: %i(create edit update)
 end

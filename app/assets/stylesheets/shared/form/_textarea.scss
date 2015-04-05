@@ -4,10 +4,6 @@
   @extend .form__input;
   resize: none;
 }
-.form__textarea--green {
-  @extend .form__input--green;
-  @extend .form__textarea;
-}
 .form__textarea--medium {
   @extend .form__input--medium;
   @extend .form__textarea;

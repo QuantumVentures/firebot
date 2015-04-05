@@ -11,11 +11,6 @@
   outline: none;
   padding: $spacing * 0.5;
   &:focus {
-    border-color: $gray-light-1;
-  }
-}
-.form__input--green {
-  &:focus {
     border-color: $green;
   }
 }

@@ -37,4 +37,10 @@ describe User do
       end
     end
   end
+
+  describe "#first_name_capitalized" do
+    it "should capitalize the first letter of the first name" do
+      expect(subject.first_name_capitalized).to eq subject.first_name.capitalize
+    end
+  end
 end

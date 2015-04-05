@@ -1,0 +1,16 @@
+.content__body {
+  padding: $spacing;
+  h1, h2, h3, h4 {
+    margin-bottom: $spacing;
+  }
+}
+.content__body__list {
+  ol, ul {
+    color: $blue;
+    margin-bottom: $spacing;
+    margin-top: $spacing * 0.25;
+    p {
+      color: $text-color;
+    }
+  }
+}

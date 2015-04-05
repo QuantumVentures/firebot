@@ -5,4 +5,18 @@ class Log < ActiveRecord::Base
 
   belongs_to :loggable,    polymorphic: true
   belongs_to :responsible, polymorphic: true
+
+  class << self
+    def completed
+      where.not completed_at: nil
+    end
+
+    def incompleted
+      where completed_at: nil
+    end
+  end
+
+  def completed?
+    !completed_at.nil?
+  end
 end

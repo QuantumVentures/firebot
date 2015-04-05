@@ -4,14 +4,14 @@
   = form_tag sessions_path do
     .form__field
       = text_field_tag :email, "",
-        class: "form__input--green form__input--medium form__input--width",
+        class: form__input--medium form__input--width",
         placeholder: "Email", type: "email"
     .form__field
       = password_field_tag :password, "",
-        class: "form__input--green form__input--medium form__input--width",
+        class: "form__input--medium form__input--width",
         placeholder: "Password"
     = button_tag "Login",
-      class: "form__button--green form__button--medium form__button--width"
+      class: "form__button--medium form__button--width"
 
 = content_for :form_footer do
   .form__footer--left

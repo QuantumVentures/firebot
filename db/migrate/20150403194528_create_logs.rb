@@ -4,6 +4,7 @@ class CreateLogs < ActiveRecord::Migration
       t.references :loggable,    polymorphic: true
       t.references :responsible, polymorphic: true
       t.text       :description
+      t.datetime   :completed_at
       t.datetime   :deleted_at
 
       t.timestamps null: false

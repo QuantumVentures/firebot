@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 20150403194528) do
     t.integer  "responsible_id"
     t.string   "responsible_type"
     t.text     "description"
+    t.datetime "completed_at"
     t.datetime "deleted_at"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false

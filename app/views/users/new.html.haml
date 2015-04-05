@@ -4,18 +4,18 @@
   = form_for @user do |f|
     .form__field
       = f.text_field :full_name, autocomplete: "off",
-        class: "form__input--green form__input--medium form__input--width",
+        class: "form__input--medium form__input--width",
         placeholder: "First & last name"
     .form__field
       = f.text_field :email, autocomplete: "off",
-        class: "form__input--green form__input--medium form__input--width",
+        class: "form__input--medium form__input--width",
         placeholder: "Email", type: "email"
     .form__field
       = f.password_field :password, autocomplete: "off",
-        class: "form__input--green form__input--medium form__input--width",
+        class: "form__input--medium form__input--width",
         placeholder: "Password"
     = f.button "Sign up",
-      class: "form__button--green form__button--medium form__button--width"
+      class: "form__button--medium form__button--width"
 
 = content_for :form_footer do
   %p

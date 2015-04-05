@@ -114,6 +114,11 @@ GEM
     dotenv (2.0.0)
     dotenv-rails (2.0.0)
       dotenv (= 2.0.0)
+    draper (2.1.0)
+      actionpack (>= 3.0)
+      activemodel (>= 3.0)
+      activesupport (>= 3.0)
+      request_store (~> 1.0)
     erubis (2.7.0)
     execjs (2.4.0)
     factory_girl (4.5.0)
@@ -275,6 +280,7 @@ GEM
     redis-store (1.1.4)
       redis (>= 2.2)
     refills (0.1.0)
+    request_store (1.1.0)
     responders (2.1.0)
       railties (>= 4.2.0, < 5)
     rspec (3.2.0)
@@ -387,6 +393,7 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   database_cleaner
   dotenv-rails
+  draper
   factory_girl_rails
   foreman
   formulaic

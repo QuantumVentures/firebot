@@ -3,7 +3,9 @@
   @include browser(appearance, none);
   @include roboto-light;
   @include transition;
+  background-color: $green;
   border: none;
+  border-color: $green-dark;
   border-left-width: 0;
   border-right-width: 0;
   border-top-width: 0;
@@ -13,15 +15,8 @@
   font-size: $font-size-normal-1;
   padding: $spacing * 0.5 $spacing;
   &:hover {
-    cursor: pointer;
-  }
-}
-.form__button--green {
-  @extend .form__button;
-  background-color: $green;
-  border-color: $green-dark;
-  &:hover {
     background-color: $green-hover;
+    cursor: pointer;
   }
 }
 .form__button--medium {

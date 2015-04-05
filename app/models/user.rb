@@ -21,6 +21,10 @@ class User < ActiveRecord::Base
 
   alias_method :apps, :backend_apps
 
+  def first_name_capitalized
+    first_name.capitalize
+  end
+
   private
 
   def parse_full_name
