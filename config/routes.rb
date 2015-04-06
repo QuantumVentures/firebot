@@ -9,13 +9,9 @@ Rails.application.routes.draw do
   get "sign-up" => "users#new", as: :new_user
 
   resources :backend_apps, only: %i(create new), path: "apps" do
+    resources :features, only: %i(create new)
     member do
-      post :describe
-      get  :descriptions
-      get  :status
-
-      # get  :features_new
-      # post :features_create, as:
+      get :status
     end
   end
   resources :sessions, only: %i(create)

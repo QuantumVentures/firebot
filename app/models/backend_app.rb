@@ -7,4 +7,8 @@ class BackendApp < ActiveRecord::Base
   has_many :logs, as: :loggable
 
   belongs_to :user
+
+  def features
+    logs.where type: "Feature"
+  end
 end
