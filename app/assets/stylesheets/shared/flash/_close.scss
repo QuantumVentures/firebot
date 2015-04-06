@@ -1,0 +1,12 @@
+.flash__close {
+  display: block;
+  float: right;
+  i {
+    color: $black;
+    font-size: $spacing;
+    opacity: 0.25;
+    &:hover {
+      opacity: 0.5;
+    }
+  }
+}

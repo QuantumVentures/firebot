@@ -8,7 +8,7 @@
       .header__navigation--right
         - if current_user
           = link_to "New App", new_backend_app_path
-          / = link_to current_user.first_name_capitalized, "#"
+          = link_to current_user.first_name_capitalized, "#"
           = link_to "Logout", logout_path
         - else
           = link_to "Login", login_path

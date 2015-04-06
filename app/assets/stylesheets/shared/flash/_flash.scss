@@ -4,6 +4,7 @@
     @include roboto-regular;
     color: $white;
     font-weight: $font-weight-medium;
+    line-height: $spacing;
   }
 }
 .flash--error {
