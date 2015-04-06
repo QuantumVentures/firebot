@@ -1,5 +1,7 @@
 class BackendApp < ActiveRecord::Base
-  acts_as_paranoid
+  include ApplicationModel
+
+  restoreable
 
   validates_presence_of :name, :user_id
   validates_uniqueness_of :name, scope: :user_id

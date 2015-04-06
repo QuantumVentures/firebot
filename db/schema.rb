@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150403194528) do
+ActiveRecord::Schema.define(version: 20150406215144) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,22 @@ ActiveRecord::Schema.define(version: 20150403194528) do
   add_index "logs", ["deleted_at"], name: "index_logs_on_deleted_at", where: "(deleted_at IS NULL)", using: :btree
   add_index "logs", ["loggable_id"], name: "index_logs_on_loggable_id", using: :btree
   add_index "logs", ["type"], name: "index_logs_on_type", using: :btree
+
+  create_table "payment_methods", force: :cascade do |t|
+    t.integer  "liable_id"
+    t.string   "liable_type"
+    t.string   "brand"
+    t.string   "name"
+    t.string   "type"
+    t.string   "uid"
+    t.datetime "deleted_at"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "payment_methods", ["deleted_at"], name: "index_payment_methods_on_deleted_at", where: "(deleted_at IS NULL)", using: :btree
+  add_index "payment_methods", ["liable_id"], name: "index_payment_methods_on_liable_id", using: :btree
+  add_index "payment_methods", ["type"], name: "index_payment_methods_on_type", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email"

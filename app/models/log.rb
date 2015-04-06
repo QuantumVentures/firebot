@@ -1,8 +1,8 @@
 class Log < ActiveRecord::Base
-  include Inheritable
+  include ApplicationModel
 
-  acts_as_paranoid
   inheritable
+  restoreable
 
   validates_presence_of :description, :loggable
 

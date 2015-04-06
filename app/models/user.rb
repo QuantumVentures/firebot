@@ -1,18 +1,20 @@
 class User < ActiveRecord::Base
-  acts_as_paranoid
+  include ApplicationModel
+
+  restoreable
 
   attr_accessor :full_name
 
   validate :validate_password_create, on: :create
   validate :validate_password_update, on: :update
-  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, length: { maximum: 255 },
-                    format: { with: VALID_EMAIL_REGEX },
+                    format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i },
                     uniqueness: { case_sensitive: false }
   validates_presence_of :first_name, :last_name
 
   has_many :backend_apps
-  has_many :logs, as: :responsible
+  has_many :logs,            as: :responsible
+  has_many :payment_methods, as: :liable
 
   has_secure_password validations: false
 

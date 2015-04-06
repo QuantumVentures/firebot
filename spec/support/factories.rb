@@ -27,6 +27,11 @@ FactoryGirl.define do
     responsible factory: :user
   end
 
+  factory :payment_method do
+    liable factory: :user
+    uid { generate :uid }
+  end
+
   factory :user do
     email
     first_name { generate :name }

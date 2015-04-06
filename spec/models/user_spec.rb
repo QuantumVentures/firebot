@@ -16,6 +16,7 @@ describe User do
 
   it { should have_many :backend_apps }
   it { should have_many :logs }
+  it { should have_many :payment_methods }
 
   context "when updating" do
     let(:password) { "password" }
