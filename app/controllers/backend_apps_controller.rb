@@ -9,6 +9,7 @@ class BackendAppsController < ApplicationController
       redirect_to descriptions_backend_app_path @app
     else
       @errors = stringify_single_error @app.errors
+      @title  = "New App"
       render "new"
     end
   end

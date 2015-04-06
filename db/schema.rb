@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 20150403194528) do
     t.string   "loggable_type"
     t.integer  "responsible_id"
     t.string   "responsible_type"
+    t.string   "type",             null: false
     t.text     "description"
     t.datetime "completed_at"
     t.datetime "deleted_at"
@@ -42,6 +43,7 @@ ActiveRecord::Schema.define(version: 20150403194528) do
 
   add_index "logs", ["deleted_at"], name: "index_logs_on_deleted_at", where: "(deleted_at IS NULL)", using: :btree
   add_index "logs", ["loggable_id"], name: "index_logs_on_loggable_id", using: :btree
+  add_index "logs", ["type"], name: "index_logs_on_type", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email"

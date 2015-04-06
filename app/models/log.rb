@@ -1,5 +1,8 @@
 class Log < ActiveRecord::Base
+  include Inheritable
+
   acts_as_paranoid
+  inheritable
 
   validates_presence_of :description, :loggable, :responsible
 

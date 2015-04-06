@@ -13,6 +13,9 @@ Rails.application.routes.draw do
       post :describe
       get  :descriptions
       get  :status
+
+      # get  :features_new
+      # post :features_create, as:
     end
   end
   resources :sessions, only: %i(create)
