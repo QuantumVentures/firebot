@@ -23,6 +23,10 @@ $font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   src: url("roboto/Roboto-Light.ttf") format("truetype");
 }
 @font-face {
+  font-family: "Roboto Medium";
+  src: url("roboto/Roboto-Medium.ttf") format("truetype");
+}
+@font-face {
   font-family: "Roboto Regular";
   src: url("roboto/Roboto-Regular.ttf") format("truetype");
 }
@@ -30,11 +34,16 @@ $font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 @mixin existence-light {
   font-family: "Existence Light", $font-family;
 }
-
 @mixin roboto-light {
   font-family: "Roboto Light", $font-family;
 }
-
+@mixin roboto-medium {
+  font-family: "Roboto Medium", $font-family;
+}
 @mixin roboto-regular {
   font-family: "Roboto Regular", $font-family;
+}
+
+.font-weight-medium {
+  @include roboto-medium;
 }

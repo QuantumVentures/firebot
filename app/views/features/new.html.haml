@@ -1,6 +1,8 @@
 .content__body
   %h3
-    Tell us about the features of "#{@app.name}"
+    Tell us about the features of
+    %span.font-weight-medium
+      #{@app.name}
   .content__body__list
     %p
       Use a single sentence to describe each feature, for example:
@@ -22,10 +24,10 @@
         .form__errors
           %p
             = @errors
-      = form_tag describe_backend_app_path @app do
+      = form_tag backend_app_features_path @app do
         = hidden_field_tag :backend_app_id, @app.id
         .form__field
           = text_area_tag :descriptions, "",
             class: "form__textarea--width",
-            placeholder: "Describe your features here..."
+            placeholder: "Seperate each feature with a period (.)"
         = button_tag "Save Features", class: "form__button"

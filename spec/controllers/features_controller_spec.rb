@@ -16,7 +16,7 @@ describe FeaturesController do
 
     context "with descriptions" do
       it "should create 3 descriptions" do
-        expect(backend_app.logs.size).to eq 3
+        expect(backend_app.features.size).to eq 3
       end
 
       it "should redirect_to status_backend_app_path" do

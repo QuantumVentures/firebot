@@ -14,13 +14,4 @@ describe BackendApp do
   it { should have_many :logs }
 
   it { should belong_to :user }
-
-  describe "#features" do
-    let(:backend_app) { create :backend_app }
-    let(:feature)     { create :feature, loggable: backend_app }
-
-    it "should include the feature" do
-      expect(backend_app.features).to include feature
-    end
-  end
 end

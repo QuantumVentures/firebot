@@ -5,6 +5,8 @@ describe Feature do
 
   subject { build :feature }
 
+  it { should validate_presence_of :responsible }
+
   context "when loggable is not a BackendApp" do
     before { subject.loggable = user }
 

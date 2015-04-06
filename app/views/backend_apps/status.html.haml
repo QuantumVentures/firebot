@@ -1,0 +1,32 @@
+.content__body
+  %h3
+    Status for
+    <span class="font-weight-medium">#{@app.name}</span> -
+    #{@status}
+  - if @incompleted.present?
+    .content__body__list
+      %p
+        The following features are being added:
+      %ol
+        - @incompleted.each do |feature|
+          %li
+            %p
+              #{feature.created_at} - #{feature.description}
+    - if @completed.present?
+      .content__body__list
+        %p
+          Recently added features:
+        %ol
+          - @completed.each do |feature|
+            %li
+              %p
+                %span.green-dark
+                  #{feature.completed_at} - #{feature.description}
+    %p
+      We will notify you via email when
+      %span.font-weight-medium
+        #{@app.name}
+      is finished updating.
+  - else
+    %p
+      = link_to "Go to app", "#"

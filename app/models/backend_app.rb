@@ -4,11 +4,8 @@ class BackendApp < ActiveRecord::Base
   validates_presence_of :name, :user_id
   validates_uniqueness_of :name, scope: :user_id
 
-  has_many :logs, as: :loggable
+  has_many :features, as: :loggable
+  has_many :logs,     as: :loggable
 
   belongs_to :user
-
-  def features
-    logs.where type: "Feature"
-  end
 end

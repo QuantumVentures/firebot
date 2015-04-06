@@ -1,5 +1,6 @@
 class Feature < Log
   validate :loggable_is_backend_app
+  validates_presence_of :responsible
 
   private
 

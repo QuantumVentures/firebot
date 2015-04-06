@@ -5,7 +5,6 @@ describe Log do
 
   it { should validate_presence_of :description }
   it { should validate_presence_of :loggable }
-  it { should validate_presence_of :responsible }
 
   it { should be_valid }
 

@@ -22,10 +22,17 @@ class BackendAppsController < ApplicationController
   end
 
   def status
-    @title = "Status"
+    @completed = features.completed.order(completed_at: :desc).limit(3).decorate
+    @incompleted = features.incompleted.order(created_at: :asc).decorate
+    @status = @incompleted.present? ? "Adding new features" : "Ready for use"
+    @title  = "Status"
   end
 
   private
+
+  def features
+    @app.features
+  end
 
   def permitted_params
     %i(description name)

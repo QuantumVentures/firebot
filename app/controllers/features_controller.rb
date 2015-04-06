@@ -6,7 +6,7 @@ class FeaturesController < ApplicationController
 
   def create
     if descriptions_array
-      create_logs
+      create_features
       flash[:success] = "Features successfully saved"
       redirect_to status_backend_app_path @app
     else
@@ -26,9 +26,9 @@ class FeaturesController < ApplicationController
     :backend_app_id
   end
 
-  def create_logs
+  def create_features
     descriptions_array.each do |description|
-      @app.logs.create description: description, responsible: current_user
+      @app.features.create description: description, responsible: current_user
     end
   end
 
