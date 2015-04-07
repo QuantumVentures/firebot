@@ -37,6 +37,12 @@ describe BackendAppsController do
     end
   end
 
+  describe "GET index" do
+    before { get :index }
+
+    it { should respond_with :success }
+  end
+
   describe "GET new" do
     before { get :new }
 

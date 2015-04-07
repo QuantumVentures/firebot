@@ -22,11 +22,22 @@
               %p
                 %span.green-dark
                   #{feature.completed_at} - #{feature.description}
-    %p
-      We will notify you via email when
-      %span.font-weight-medium
-        #{@app.name}
-      is finished updating.
+    .content__body__list
+      %p
+        We will notify you when your app is ready, in the meantime:
+      %ul
+        %li
+          %p
+            View the details of
+            = link_to "your app", backend_app_path(@app)
+        %li
+          %p
+            Create a
+            = link_to "new app", new_backend_app_path
+        %li
+          %p
+            Add a
+            = link_to "payment method", "#"
   - else
     %p
       = link_to "Go to app", "#"

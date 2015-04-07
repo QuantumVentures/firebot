@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   # Users
   get "sign-up" => "users#new", as: :new_user
 
-  resources :backend_apps, only: %i(create new), path: "apps" do
+  resources :backend_apps, only: %i(create index new show), path: "apps" do
     resources :features, only: %i(create new)
     member do
       get :status

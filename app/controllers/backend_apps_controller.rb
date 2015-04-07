@@ -16,6 +16,11 @@ class BackendAppsController < ApplicationController
     end
   end
 
+  def index
+    @apps  = current_user.apps
+    @title = "Apps"
+  end
+
   def new
     @app   = current_user.apps.new
     @title = "New App"
