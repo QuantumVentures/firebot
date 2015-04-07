@@ -49,6 +49,12 @@ describe BackendAppsController do
     it { should respond_with :success }
   end
 
+  describe "GET show" do
+    before { get :show, id: backend_app.id }
+
+    it { should respond_with :success }
+  end
+
   describe "GET status" do
     before { get :status, id: backend_app.id }
 

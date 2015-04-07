@@ -2,7 +2,7 @@ class BackendAppsController < ApplicationController
   include BackendAppFindable
 
   before_action :require_login
-  before_action :find_app, only: %i(status)
+  before_action :find_app, only: %i(show status)
 
   def create
     @app = current_user.apps.new permitted
@@ -24,6 +24,10 @@ class BackendAppsController < ApplicationController
   def new
     @app   = current_user.apps.new
     @title = "New App"
+  end
+
+  def show
+    @title = @app.name
   end
 
   def status
