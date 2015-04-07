@@ -74,5 +74,5 @@
   white-space: nowrap;
 }
 @mixin transition {
-  @include browser(transition, "0.1s all linear");
+  @include browser(transition, 0.1s all linear);
 }

@@ -1,11 +1,14 @@
 $header-height: $spacing * 3;
-
 header {
   background-color: $blue;
   height: $header-height;
+  position: relative;
   width: 100%;
+  z-index: 1;
   .header {
     padding: 0 $spacing;
+    position: relative;
+    z-index: 1;
     .header__logo {
       a {
         @include existence-light;
@@ -19,18 +22,92 @@ header {
     }
     .header__navigation {
       background: transparent;
+      position: relative;
+      z-index: 1;
     }
     .header__navigation--right {
       @extend .header__navigation;
       float: right;
+    }
+    .header__navigation__links {
+      float: left;
       a {
+        @include transition;
         display: block;
         color: $white;
         float: left;
         font-size: $font-size-normal-1;
         line-height: $header-height;
-        margin-left: $spacing;
+        padding: 0 $spacing;
+        &:hover {
+          background-color: $blue-hover;
+        }
       }
     }
   }
+}
+
+$user__image-size: $spacing * 2;
+.header__user {
+  float: right;
+  padding: 0 $spacing;
+  position: relative;
+  z-index: 0;
+  &:hover {
+    background-color: $blue-hover;
+    cursor: pointer;
+  }
+}
+.header__user__image {
+  @include background-image-default;
+  @include browser(border-radius, $user__image-size * 0.5);
+  border: 2px solid $white;
+  float: left;
+  height: $user__image-size;
+  overflow: hidden;
+  position: relative;
+  top: ($header-height - $user__image-size) * 0.5;
+  width: $user__image-size;
+}
+.header__user__name {
+  color: $white;
+  float: left;
+  font-size: $font-size-normal-1;
+  line-height: $header-height;
+  margin-left: $spacing * 0.5;
+}
+.header__user__menu {
+  @include border-bottom-left-radius;
+  @include border-bottom-right-radius;
+  @include browser(transition, 0.1s all ease);
+  background-color: $blue-hover;
+  min-width: $spacing * 10;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  right: 0;
+  top: $header-height - 2px;
+  visibility: hidden;
+  z-index: 0;
+  ul {
+    border-left: 2px solid $green;
+    list-style-type: none;
+    padding: 0;
+    li {
+      a {
+        @include transition;
+        color: $white;
+        display: block;
+        padding: $spacing;
+        &:hover {
+          color: $green;
+        }
+      }
+    }
+  }
+}
+.header__user:hover .header__user__menu {
+  opacity: 1;
+  top: $header-height;
+  visibility: visible;
 }

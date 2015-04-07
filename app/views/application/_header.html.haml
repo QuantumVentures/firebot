@@ -7,9 +7,23 @@
         = link_to "Firebot", root_path
       .header__navigation--right
         - if current_user
-          = link_to "New App", new_backend_app_path
-          = link_to current_user.first_name_capitalized, "#"
-          = link_to "Logout", logout_path
+          .header__navigation__links
+            = link_to "New App", new_backend_app_path
+          .header__user
+            .header__user__image{ style: "background-image: url(#{image_path "user-default.png"});" }
+            .header__user__name
+              = current_user.first_name_capitalized
+            .header__user__menu
+              %ul
+                %li
+                  = link_to "Apps", "#"
+                %li
+                  = link_to "Billing", "#"
+                %li
+                  = link_to "Settings", "#"
+                %li
+                  = link_to "Logout", logout_path
         - else
-          = link_to "Login", login_path
-          = link_to "Sign up", new_user_path
+          .header__navigation__links
+            = link_to "Login", login_path
+            = link_to "Sign up", new_user_path
