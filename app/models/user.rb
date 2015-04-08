@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
                     uniqueness: { case_sensitive: false }
   validates_presence_of :first_name, :last_name
 
+  has_many :access_tokens
   has_many :backend_apps
   has_many :logs,            as: :responsible
   has_many :payment_methods, as: :liable

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150406215144) do
+ActiveRecord::Schema.define(version: 20150408194207) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,6 +60,24 @@ ActiveRecord::Schema.define(version: 20150406215144) do
   add_index "payment_methods", ["deleted_at"], name: "index_payment_methods_on_deleted_at", where: "(deleted_at IS NULL)", using: :btree
   add_index "payment_methods", ["liable_id"], name: "index_payment_methods_on_liable_id", using: :btree
   add_index "payment_methods", ["type"], name: "index_payment_methods_on_type", using: :btree
+
+  create_table "tokens", force: :cascade do |t|
+    t.integer  "tokenable_id"
+    t.string   "tokenable_type"
+    t.integer  "user_id",        null: false
+    t.string   "token",          null: false
+    t.string   "type",           null: false
+    t.datetime "deleted_at"
+    t.datetime "expires_at"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "tokens", ["deleted_at"], name: "index_tokens_on_deleted_at", where: "(deleted_at IS NULL)", using: :btree
+  add_index "tokens", ["token", "type"], name: "index_tokens_on_token_and_type", unique: true, using: :btree
+  add_index "tokens", ["tokenable_id"], name: "index_tokens_on_tokenable_id", using: :btree
+  add_index "tokens", ["tokenable_type"], name: "index_tokens_on_tokenable_type", using: :btree
+  add_index "tokens", ["user_id"], name: "index_tokens_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email"

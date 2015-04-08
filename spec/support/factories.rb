@@ -32,6 +32,17 @@ FactoryGirl.define do
     uid { generate :uid }
   end
 
+  factory :token do
+    tokenable factory: :backend_app
+    user
+
+    factory :access_token, class: AccessToken
+
+    trait :expired do
+      expires_at { 1.minute.ago }
+    end
+  end
+
   factory :user do
     email
     first_name { generate :name }
