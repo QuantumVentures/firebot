@@ -27,6 +27,11 @@ FactoryGirl.define do
     responsible factory: :user
   end
 
+  factory :model do
+    backend_app
+    name { generate :name }
+  end
+
   factory :payment_method do
     liable factory: :user
     uid { generate :uid }

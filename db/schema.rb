@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150408194207) do
+ActiveRecord::Schema.define(version: 20150409142222) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,18 @@ ActiveRecord::Schema.define(version: 20150408194207) do
   add_index "logs", ["deleted_at"], name: "index_logs_on_deleted_at", where: "(deleted_at IS NULL)", using: :btree
   add_index "logs", ["loggable_id"], name: "index_logs_on_loggable_id", using: :btree
   add_index "logs", ["type"], name: "index_logs_on_type", using: :btree
+
+  create_table "models", force: :cascade do |t|
+    t.integer  "backend_app_id",              null: false
+    t.json     "schema",         default: {}, null: false
+    t.string   "name",                        null: false
+    t.datetime "deleted_at"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+  end
+
+  add_index "models", ["backend_app_id", "name"], name: "index_models_on_backend_app_id_and_name", unique: true, using: :btree
+  add_index "models", ["deleted_at"], name: "index_models_on_deleted_at", where: "(deleted_at IS NULL)", using: :btree
 
   create_table "payment_methods", force: :cascade do |t|
     t.integer  "liable_id"
