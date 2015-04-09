@@ -7,10 +7,10 @@ describe User do
 
   it_should_behave_like :crud
 
-  it { should have_many :access_tokens }
-  it { should have_many :backend_apps }
-  it { should have_many :logs }
-  it { should have_many :payment_methods }
+  it { should have_many(:access_tokens).dependent :destroy }
+  it { should have_many(:backend_apps).dependent :destroy }
+  it { should have_many(:logs).dependent :destroy }
+  it { should have_many(:payment_methods).dependent :destroy }
 
   it { should allow_value("email@addresse.foo").for(:email) }
   it { should_not allow_value("foo").for(:email) }

@@ -3,9 +3,12 @@ class BackendApp < ActiveRecord::Base
 
   restoreable
 
-  has_many :access_tokens, as: :tokenable
-  has_many :features,      as: :loggable
-  has_many :logs,          as: :loggable
+  with_options dependent: :destroy do
+    has_many :access_tokens, as: :tokenable
+    has_many :features,      as: :loggable
+    has_many :logs,          as: :loggable
+    has_many :models
+  end
 
   belongs_to :user
 

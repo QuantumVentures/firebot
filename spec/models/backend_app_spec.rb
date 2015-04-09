@@ -5,9 +5,10 @@ describe BackendApp do
 
   it_should_behave_like :crud
 
-  it { should have_many :access_tokens }
-  it { should have_many :features }
-  it { should have_many :logs }
+  it { should have_many(:access_tokens).dependent :destroy }
+  it { should have_many(:features).dependent :destroy }
+  it { should have_many(:logs).dependent :destroy }
+  it { should have_many(:models).dependent :destroy }
 
   it { should belong_to :user }
 
