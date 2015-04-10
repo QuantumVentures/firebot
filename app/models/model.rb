@@ -24,17 +24,40 @@ class Model < ActiveRecord::Base
     string
   ).freeze
 
+  def update_schema(key, options)
+    self.schema[key.to_s] = {
+      "required" => options[:required],
+      "type"     => options[:type]
+    }
+  end
+
   private
 
   def column_types
-    if (schema.values.uniq - COLUMN_TYPES).size > 0
+    if (schema_column_types - COLUMN_TYPES).size > 0
       errors.add :schema, "invalid column type"
     end
   end
 
+  def schema_column_types
+    schema.values.map { |h| h["type"] }.uniq
+  end
+
   def set_default_schema
-    self.schema["created_at"] = "date" unless schema["created_at"]
-    self.schema["id"]         = "string" unless schema["id"]
-    self.schema["updated_at"] = "date" unless schema["updated_at"]
+    set_created_at_schema unless schema["created_at"]
+    set_id_schema unless schema["id"]
+    set_updated_at_schema unless schema["updated_at"]
+  end
+
+  def set_created_at_schema
+    update_schema :created_at, required: false, type: "date"
+  end
+
+  def set_id_schema
+    update_schema :id, required: false, type: "string"
+  end
+
+  def set_updated_at_schema
+    update_schema :updated_at, required: false, type: "date"
   end
 end

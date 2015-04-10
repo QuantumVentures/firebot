@@ -17,7 +17,7 @@ describe Model do
   describe "validate column_types" do
     let(:column_type) { "string" }
 
-    before { subject.schema["name"] = column_type }
+    before { subject.update_schema "name", type: column_type }
 
     context "with valid column type" do
       it "should be valid" do
@@ -38,9 +38,18 @@ describe Model do
     before { subject.save }
 
     it "should set created_at, id, and updated_at in the schema" do
-      expect(subject.schema["created_at"]).to eq "date"
-      expect(subject.schema["id"]).to eq "string"
-      expect(subject.schema["updated_at"]).to eq "date"
+      expect(subject.schema["created_at"]["type"]).to eq "date"
+      expect(subject.schema["id"]["type"]).to eq "string"
+      expect(subject.schema["updated_at"]["type"]).to eq "date"
+    end
+  end
+
+  describe "#update_schema" do
+    before { subject.update_schema "name", required: false, type: "string" }
+
+    it "should have the correct info in the schema" do
+      expect(subject.schema["name"]["required"]).to eq false
+      expect(subject.schema["name"]["type"]).to eq "string"
     end
   end
 end
