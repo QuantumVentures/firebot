@@ -9,6 +9,7 @@ class Model < ActiveRecord::Base
   validates_presence_of :backend_app, :name
   validates_uniqueness_of :name, scope: :backend_app, case_sensitive: false
 
+  before_validation :default_schema
   before_save :set_default_schema
 
   COLUMN_TYPES = %w(
@@ -25,10 +26,15 @@ class Model < ActiveRecord::Base
   ).freeze
 
   def update_schema(key, options)
-    self.schema[key.to_s] = {
-      "required" => options[:required],
-      "type"     => options[:type]
-    }
+    if COLUMN_TYPES.index options[:type].to_s
+      self.schema[key.to_s] = {
+        "required" => options[:required],
+        "type"     => options[:type]
+      }
+      true
+    else
+      false
+    end
   end
 
   private
@@ -37,6 +43,10 @@ class Model < ActiveRecord::Base
     if (schema_column_types - COLUMN_TYPES).size > 0
       errors.add :schema, "invalid column type"
     end
+  end
+
+  def default_schema
+    self.schema = {} if schema.nil?
   end
 
   def schema_column_types

@@ -17,7 +17,7 @@ describe Model do
   describe "validate column_types" do
     let(:column_type) { "string" }
 
-    before { subject.update_schema "name", type: column_type }
+    before { subject.schema["name"] = { "type" => column_type } }
 
     context "with valid column type" do
       it "should be valid" do
@@ -45,11 +45,27 @@ describe Model do
   end
 
   describe "#update_schema" do
-    before { subject.update_schema "name", required: false, type: "string" }
+    let(:action) { subject.update_schema "name", required: false, type: type }
+    let(:type)   { "string" }
 
-    it "should have the correct info in the schema" do
-      expect(subject.schema["name"]["required"]).to eq false
-      expect(subject.schema["name"]["type"]).to eq "string"
+    context "with valid type" do
+      it "should have the correct info in the schema" do
+        action
+        expect(subject.schema["name"]["required"]).to eq false
+        expect(subject.schema["name"]["type"]).to eq "string"
+      end
+
+      it "should return true" do
+        expect(action).to be true
+      end
+    end
+
+    context "with invalid type" do
+      let(:type) { "foo" }
+
+      it "should return false" do
+        expect(action).to be false
+      end
     end
   end
 end
