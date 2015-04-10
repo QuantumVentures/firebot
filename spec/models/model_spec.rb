@@ -10,7 +10,9 @@ describe Model do
 
   it { should validate_presence_of :backend_app }
   it { should validate_presence_of :name }
-  it { should validate_uniqueness_of(:backend_app_id).scoped_to :name }
+  it { should validate_uniqueness_of(:name)
+              .scoped_to(:backend_app_id)
+              .case_insensitive }
 
   describe "validate column_types" do
     let(:column_type) { "string" }
