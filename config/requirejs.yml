@@ -1,9 +1,0 @@
-map:
-  '*':
-    underscore: 'lodash'
-shim:
-  jquery:
-    exports: '$'
-  lodash:
-    deps: []
-    exports: '_'
