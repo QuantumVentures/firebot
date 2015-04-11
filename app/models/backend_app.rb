@@ -14,4 +14,12 @@ class BackendApp < ActiveRecord::Base
 
   validates_presence_of :name, :user_id
   validates_uniqueness_of :name, scope: :user_id
+
+  before_create :set_uid
+
+  private
+
+  def set_uid
+    self.uid = SecureRandom.uuid.split("-").join ""
+  end
 end

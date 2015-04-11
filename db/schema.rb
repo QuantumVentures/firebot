@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20150409142222) do
   create_table "backend_apps", force: :cascade do |t|
     t.integer  "user_id",     null: false
     t.string   "name"
+    t.string   "uid"
     t.text     "description"
     t.datetime "deleted_at"
     t.datetime "created_at",  null: false
@@ -27,6 +28,7 @@ ActiveRecord::Schema.define(version: 20150409142222) do
 
   add_index "backend_apps", ["deleted_at"], name: "index_backend_apps_on_deleted_at", where: "(deleted_at IS NULL)", using: :btree
   add_index "backend_apps", ["name", "user_id"], name: "index_backend_apps_on_name_and_user_id", unique: true, using: :btree
+  add_index "backend_apps", ["uid"], name: "index_backend_apps_on_uid", unique: true, using: :btree
 
   create_table "logs", force: :cascade do |t|
     t.integer  "loggable_id"

@@ -17,4 +17,12 @@ describe BackendApp do
   it { should validate_uniqueness_of(:name).scoped_to(:user_id) }
 
   it { should be_valid }
+
+  describe ".before_create" do
+    before { subject.save }
+
+    it "should set the uid" do
+      expect(subject.uid).not_to be_nil
+    end
+  end
 end
