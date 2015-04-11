@@ -31,3 +31,6 @@
             class: "form__textarea--width",
             placeholder: "Seperate each feature with a period (.)"
         = button_tag "Save Features", class: "form__button"
+        - if @features.present?
+          = link_to "Cancel", backend_app_path(@app),
+            class: "form__button--gray"

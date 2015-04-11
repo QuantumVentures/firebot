@@ -14,9 +14,21 @@
   color: $white;
   font-size: $font-size-normal-1;
   padding: $spacing * 0.5 $spacing;
+  &:active, &:focus {
+    outline: none;
+  }
   &:hover {
     background-color: $green-hover;
+    color: $white;
     cursor: pointer;
+  }
+}
+.form__button--gray {
+  @extend .form__button;
+  background-color: $gray-light-2;
+  border-color: $gray-medium-2;
+  &:hover {
+    background-color: $gray-light-2-hover;
   }
 }
 .form__button--medium {

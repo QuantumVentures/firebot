@@ -10,7 +10,7 @@
           %li
             %p
               = link_to app.name, app
-              - if app.description
+              - if app.description.present?
                 \-
                 = app.description
   - else

@@ -2,25 +2,12 @@
   %h3
     = @app.name
   %p
-    = @app.description
-    \-
+    - if @app.description.present?
+      = @app.description
+      \-
     = link_to "edit", edit_backend_app_path(@app)
   %p
     = link_to "Status", status_backend_app_path(@app)
   %p
     Add
     = link_to "more features", new_backend_app_feature_path(@app)
-  %p
-    Customize app (edit manually)
-  %p
-    Documentation!
-  %p
-    API endpoints!
-  %p
-    Logs (history)
-  %p
-    Add users (developers) to the app
-  %p
-    Access tokens
-  %p
-    Admin panel for data management

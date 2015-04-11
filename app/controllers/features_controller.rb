@@ -17,7 +17,8 @@ class FeaturesController < ApplicationController
   end
 
   def new
-    @title = "New Features"
+    @features = @app.features.first
+    @title    = "New Features"
   end
 
   private
