@@ -1,0 +1,25 @@
+.content__body
+  %h3
+    = yield :backend_app_fields_header
+  .form
+    - if @errors
+      .form__errors
+        %p
+          = @errors
+    = form_for @app do |f|
+      .form__field
+        .form__field__text
+          %p
+            What is the name of your app?
+        = f.text_field :name, autocomplete: "off",
+          class: "form__input--medium form__input--width",
+          placeholder: "e.g. Used Car Marketplace"
+      .form__field
+        .form__field__text
+          %p
+            Give a short description of your app (optional)
+        = f.text_area :description,
+          class: "form__textarea--medium form__textarea--width",
+          placeholder: "e.g. People can buy used cars from others"
+      = f.button "#{yield :backend_app_fields_button}",
+        class: "form__button--medium"

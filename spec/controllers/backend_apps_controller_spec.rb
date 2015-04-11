@@ -37,6 +37,12 @@ describe BackendAppsController do
     end
   end
 
+  describe "GET edit" do
+    before { get :edit, id: backend_app.id }
+
+    it { should respond_with :success }
+  end
+
   describe "GET index" do
     before { get :index }
 
@@ -59,5 +65,36 @@ describe BackendAppsController do
     before { get :status, id: backend_app.id }
 
     it { should respond_with :success }
+  end
+
+  describe "PATCH update" do
+    let(:name) { "new name" }
+
+    before do
+      patch :update, id: backend_app.id, backend_app: { name: name }
+      backend_app.reload
+    end
+
+    context "with valid attributes" do
+      it "should update the backend_app" do
+        expect(backend_app.name).to eq name
+      end
+
+      it "should redirect to show" do
+        expect(controller).to redirect_to backend_app_path backend_app
+      end
+    end
+
+    context "with invalid attributes" do
+      let(:name) { "" }
+
+      it "should not update the backend_app" do
+        expect(backend_app.name).not_to eq name
+      end
+
+      it "should have errors" do
+        expect(assigns :errors).not_to be_nil
+      end
+    end
   end
 end

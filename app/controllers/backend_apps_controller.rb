@@ -2,7 +2,7 @@ class BackendAppsController < ApplicationController
   include BackendAppFindable
 
   before_action :require_login
-  before_action :find_app, only: %i(show status)
+  before_action :find_app, only: %i(edit show status update)
 
   def create
     @app = current_user.apps.new permitted
@@ -14,6 +14,10 @@ class BackendAppsController < ApplicationController
       @title  = "New App"
       render "new"
     end
+  end
+
+  def edit
+    @title = "Edit App"
   end
 
   def index
@@ -35,6 +39,17 @@ class BackendAppsController < ApplicationController
     @incompleted = features.incompleted.order(created_at: :asc).decorate
     @status = @incompleted.present? ? "Adding new features" : "Ready for use"
     @title  = "Status"
+  end
+
+  def update
+    if @app.update permitted
+      flash[:success] = "Update succeeded"
+      redirect_to backend_app_path(@app)
+    else
+      @errors = stringify_single_error @app.errors
+      @title  = "Edit App"
+      render "edit"
+    end
   end
 
   private
