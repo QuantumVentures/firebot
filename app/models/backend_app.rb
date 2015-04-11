@@ -12,7 +12,7 @@ class BackendApp < ActiveRecord::Base
 
   belongs_to :user
 
-  validates_presence_of :name, :user_id
+  validates_presence_of :name, :user
   validates_uniqueness_of :name, scope: :user_id
 
   before_create :set_uid

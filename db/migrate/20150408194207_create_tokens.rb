@@ -5,6 +5,7 @@ class CreateTokens < ActiveRecord::Migration
       t.references :user,      null: false
       t.string     :token,     null: false
       t.string     :type,      null: false
+      t.string     :tokenable_uid
       t.datetime   :deleted_at
       t.datetime   :expires_at
 

@@ -81,6 +81,7 @@ ActiveRecord::Schema.define(version: 20150409142222) do
     t.integer  "user_id",        null: false
     t.string   "token",          null: false
     t.string   "type",           null: false
+    t.string   "tokenable_uid"
     t.datetime "deleted_at"
     t.datetime "expires_at"
     t.datetime "created_at",     null: false
