@@ -19,6 +19,10 @@ model.update_schema :condition, required: true, type: "string"
 model.update_schema :features, required: false, type: "array"
 model.update_schema :make, required: true, type: "string"
 model.update_schema :model, required: true, type: "string"
+model.update_schema :salvaged, required: true, type: "boolean"
+model.update_schema(:user,
+  required: false, relationship_to: "User", type: "relation"
+)
 model.update_schema :year, required: true, type: "number"
 model.save!
 

@@ -28,8 +28,9 @@ class Model < ActiveRecord::Base
   def update_schema(key, options)
     if COLUMN_TYPES.index options[:type].to_s
       self.schema[key.to_s] = {
-        "required" => options[:required],
-        "type"     => options[:type]
+        "relationship_to" => options[:relationship_to],
+        "required"        => options[:required],
+        "type"            => options[:type]
       }
       true
     else

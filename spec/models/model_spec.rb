@@ -45,13 +45,19 @@ describe Model do
   end
 
   describe "#update_schema" do
-    let(:action) { subject.update_schema "name", required: false, type: type }
-    let(:type)   { "string" }
+    let(:action) do
+      subject.update_schema("name",
+        required: false, relationship_to: relationship_to, type: type
+      )
+    end
+    let(:relationship_to) { "User" }
+    let(:type)            { "string" }
 
     context "with valid type" do
       it "should have the correct info in the schema" do
         action
         expect(subject.schema["name"]["required"]).to eq false
+        expect(subject.schema["name"]["relationship_to"]).to eq relationship_to
         expect(subject.schema["name"]["type"]).to eq "string"
       end
 
