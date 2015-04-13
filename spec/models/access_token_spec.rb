@@ -5,9 +5,15 @@ describe AccessToken do
 
   describe ".before_create" do
     let(:access_token) { create :access_token, tokenable: backend_app }
-    let(:backend_app)  { create :backend_app }
+    let(:backend_app)  { create :backend_app, metadata: { foo: "bar" } }
 
     before { access_token.save }
+
+    describe "#set_metadata" do
+      it "should set the metadata" do
+        expect(access_token.metadata).to eq backend_app.metadata
+      end
+    end
 
     describe "#set_tokenable_uid" do
       it "should set the tokenable_uid" do

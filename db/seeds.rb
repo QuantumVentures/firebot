@@ -7,7 +7,11 @@ user = User.create!(
 
 app = user.apps.create!(
   description: "People can buy used cars from others",
-  name:        "Used Car Marketplace"
+  name:        "Used Car Marketplace",
+  metadata: {
+    application_id: "KH7KW0pOOZsu6gjmPfD4uL5yLCD8CLgRSIuqwnyb",
+    api_key: "K5Uq0hecbVmf2ZYff1pW2wIgjj5bmjEqyBI0qGVy"
+  }
 )
 
 model = app.models.new name: "Car"

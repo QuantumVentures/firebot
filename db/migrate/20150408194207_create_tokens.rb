@@ -6,6 +6,7 @@ class CreateTokens < ActiveRecord::Migration
       t.string     :token,     null: false
       t.string     :type,      null: false
       t.string     :tokenable_uid
+      t.json       :metadata,  null: false, default: {}
       t.datetime   :deleted_at
       t.datetime   :expires_at
 

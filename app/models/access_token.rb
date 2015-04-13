@@ -1,4 +1,5 @@
 class AccessToken < Token
+  before_create :set_metadata
   before_create :set_tokenable_uid
 
   def lifespan
@@ -6,6 +7,12 @@ class AccessToken < Token
   end
 
   private
+
+  def set_metadata
+    if tokenable && tokenable.metadata.present?
+      self.metadata = tokenable.metadata
+    end
+  end
 
   def set_tokenable_uid
     if tokenable && tokenable.try(:uid)

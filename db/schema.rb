@@ -17,13 +17,14 @@ ActiveRecord::Schema.define(version: 20150409142222) do
   enable_extension "plpgsql"
 
   create_table "backend_apps", force: :cascade do |t|
-    t.integer  "user_id",     null: false
+    t.integer  "user_id",                  null: false
     t.string   "name"
     t.string   "uid"
     t.text     "description"
+    t.json     "metadata",    default: {}, null: false
     t.datetime "deleted_at"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
   add_index "backend_apps", ["deleted_at"], name: "index_backend_apps_on_deleted_at", where: "(deleted_at IS NULL)", using: :btree
@@ -78,14 +79,15 @@ ActiveRecord::Schema.define(version: 20150409142222) do
   create_table "tokens", force: :cascade do |t|
     t.integer  "tokenable_id"
     t.string   "tokenable_type"
-    t.integer  "user_id",        null: false
-    t.string   "token",          null: false
-    t.string   "type",           null: false
+    t.integer  "user_id",                     null: false
+    t.string   "token",                       null: false
+    t.string   "type",                        null: false
     t.string   "tokenable_uid"
+    t.json     "metadata",       default: {}, null: false
     t.datetime "deleted_at"
     t.datetime "expires_at"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
   add_index "tokens", ["deleted_at"], name: "index_tokens_on_deleted_at", where: "(deleted_at IS NULL)", using: :btree
