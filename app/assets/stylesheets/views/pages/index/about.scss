@@ -1,0 +1,38 @@
+.pages {
+  &.index {
+    section {
+      &.about {
+        .section__content {
+          color: $gray-medium-1;
+        }
+      }
+      &.definition {
+        background-color: $blue;
+        .section__content {
+          color: $white;
+          max-width: $max-width * 0.8;
+        }
+      }
+      &.features {
+        .steps {
+          margin-top: $spacing * 4;
+        }
+      }
+      .section__content {
+        max-width: $max-width;
+        margin: 0 auto;
+        padding: $spacing * 5;
+        text-align: center;
+        width: 100%;
+        h2 {
+          span {
+            border-bottom: 1px solid $white;
+          }
+        }
+        p {
+          margin-top: $spacing;
+        }
+      }
+    }
+  }
+}

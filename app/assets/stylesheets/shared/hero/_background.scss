@@ -1,0 +1,61 @@
+$hero__background-height: $spacing * 30;
+$hero__background__content__image-height: $spacing * 5;
+
+.hero__background {
+  height: $hero__background-height;
+  position: relative;
+  width: 100%;
+  .hero__background__tint, .hero__background__image {
+    height: 100%;
+    position: absolute;
+    width: 100%;
+  }
+  .hero__background__tint {
+    background-color: $black;
+    opacity: 0.5;
+    z-index: 1;
+  }
+  .hero__background__image {
+    @include background-image-default;
+    background-image: image-url("pages/index/background.jpg");
+    z-index: 0;
+  }
+  .hero__background__content {
+    opacity: 0;
+    position: relative;
+    z-index: 2;
+    .hero__background__content__image {
+      height: $hero__background__content__image-height;
+      margin: 0 auto;
+      margin-bottom: $spacing * 1.5;
+      width: $hero__background__content__image-height;
+      img {
+        height: 100%;
+        width: 100%;
+      }
+    }
+    .hero__background__content__text {
+      @include existence-light;
+      margin-bottom: $spacing * 2;
+      h1 {
+        color: $white;
+        font-size: $font-size-large-2;
+        text-align: center;
+      }
+    }
+    .hero__background__content__actions {
+      a {
+        @include border-radius;
+        border: 1px solid $white;
+        color: $white;
+        display: block;
+        font-size: $font-size-normal-2;
+        line-height: $spacing;
+        margin: 0 auto;
+        padding: $spacing * 0.75 $spacing;
+        text-align: center;
+        width: $spacing * 10;
+      }
+    }
+  }
+}

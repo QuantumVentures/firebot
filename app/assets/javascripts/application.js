@@ -7,3 +7,4 @@
 //= require_tree .
 
 modulejs.require('flash_message').initialize();
+modulejs.require('hero_content').initialize();

@@ -1,0 +1,37 @@
+$step__body__image-size: $spacing * 5;
+
+.steps {
+  width: 100%;
+  .step {
+    @include screen-xs {
+      @include span-columns(12);
+    }
+    @include screen-sm {
+      @include span-columns(12);
+    }
+    @include screen-md-min {
+      @include span-columns(4);
+    }
+    .step__body {
+      text-align: center;
+      padding: 0 $spacing * 0.75;
+      .step__body__image {
+        height: $step__body__image-size;
+        margin: 0 auto;
+        width: $step__body__image-size;
+        img {
+          height: 100%;
+          width: 100%;
+        }
+      }
+      .step__body__title, .step__body__text {
+        margin-top: $spacing;
+      }
+      .step__body__text {
+        p {
+          color: $gray-medium-1;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,73 @@
+= content_for :header do
+  %span
+
+= content_for :footer do
+  %span
+
+.hero
+  .hero__background
+    .hero__background__tint
+    .hero__background__image
+    .hero__background__content
+      .hero__background__content__image
+        = image_tag "logo.png"
+      .hero__background__content__text
+        %h1
+          Firebot starts you up
+      .hero__background__content__actions
+        = link_to "Get started", "#"
+
+%section.about
+  .section__content
+    %h3
+      We make it fast and simple for you to customize and launch your backend.
+
+%section.definition
+  .section__content
+    %h2
+      What is a
+      <span>Backend</span>?
+    %p
+      Your backend includes a server, application, and database.
+      This is where all your business logic happens; from uploading images,
+      processing payments, sending emails, saving user information, etc.
+
+%section.features
+  .section__content
+    %h2
+      Zero to one hundred
+    .steps
+      .step
+        .step__body
+          .step__body__image
+            = image_tag "favicon.png"
+          .step__body__title
+            %h3
+              Zero code
+          .step__body__text
+            %p
+              Our tool is ultra simple so that you will never have to
+              write a line of code.
+      .step
+        .step__body
+          .step__body__image
+            = image_tag "favicon.png"
+          .step__body__title
+            %h3
+              Customizable
+          .step__body__text
+            %p
+              You hold all the power,
+              make anything your business requires and as fast as you need.
+      .step
+        .step__body
+          .step__body__image
+            = image_tag "favicon.png"
+          .step__body__title
+            %h3
+              Dependable
+          .step__body__text
+            %p
+              We host everything for you, we test everything for you, and we
+              document everything for you.
+    .clear
