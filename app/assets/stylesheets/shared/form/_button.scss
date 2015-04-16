@@ -12,6 +12,7 @@
   border-bottom-width: 2px;
   border-style: solid;
   color: $white;
+  display: block;
   font-size: $font-size-normal-1;
   padding: $spacing * 0.5 $spacing;
   &:active, &:focus {
@@ -29,6 +30,14 @@
   border-color: $gray-medium-2;
   &:hover {
     background-color: $gray-light-2-hover;
+  }
+}
+.form__button--blue {
+  @extend .form__button;
+  background-color: $blue;
+  border-color: $blue-dark;
+  &:hover {
+    background-color: $blue-hover;
   }
 }
 .form__button--medium {

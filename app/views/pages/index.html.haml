@@ -1,9 +1,6 @@
 = content_for :header do
   %span
 
-= content_for :footer do
-  %span
-
 .hero
   .hero__background
     .hero__background__tint
@@ -15,14 +12,25 @@
         %h1
           Firebot starts you up
       .hero__background__content__actions
-        = link_to "Get started", "#"
+        = link_to "Get started", "#", class: "js-button js-scroll-to",
+          data: { "scroll-to-key" => "get-started" }
 
 %section.about
   .section__content
     %h3
-      We make it fast and simple for you to customize and launch your backend.
+      We make it simple for you to customize and
+      launch your backend application.
 
 %section.definition
+  .section__pattern
+    .section__content
+      %h2
+        What is a
+        <span>Backend</span>?
+      %p
+        Your backend includes a server, application, and database.
+        This is where all your business logic happens; from uploading images,
+        processing payments, sending emails, saving user information, etc.
   .section__content
     %h2
       What is a
@@ -40,34 +48,53 @@
       .step
         .step__body
           .step__body__image
-            = image_tag "favicon.png"
+            %i.fa.fa-magic
           .step__body__title
             %h3
               Zero code
           .step__body__text
             %p
-              Our tool is ultra simple so that you will never have to
-              write a line of code.
+              Our tool is ultra
+              %span
+                simple
+              so that you will never have to write a single line of code
       .step
         .step__body
           .step__body__image
-            = image_tag "favicon.png"
+            %i.fa.fa-cogs
           .step__body__title
             %h3
               Customizable
           .step__body__text
             %p
-              You hold all the power,
-              make anything your business requires and as fast as you need.
+              Make anything your business requires and as fast as you need,
+              you hold all the
+              %span
+                power
       .step
         .step__body
           .step__body__image
-            = image_tag "favicon.png"
+            %i.fa.fa-shield
           .step__body__title
             %h3
               Dependable
           .step__body__text
             %p
-              We host everything for you, we test everything for you, and we
-              document everything for you.
+              You never have to worry because we
+              host, maintain, and document
+              %span
+                everything
+              for your backend
+    .clear
+
+%section.start.get-started
+  .section__content
+    %h2
+      Get started now
+    %div
+      .section__content__action
+        = link_to "Login", login_path,
+          class: "form__button--blue form__button--medium left"
+      .section__content__action
+        = link_to "Sign up", new_user_path, class: "form__button--medium right"
     .clear

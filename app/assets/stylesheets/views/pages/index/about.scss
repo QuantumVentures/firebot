@@ -1,13 +1,14 @@
 .pages {
   &.index {
     section {
+      position: relative;
       &.about {
         .section__content {
           color: $gray-medium-1;
         }
       }
       &.definition {
-        background-color: $blue;
+        background-color: $blue-dark;
         .section__content {
           color: $white;
           max-width: $max-width * 0.8;
@@ -18,12 +19,58 @@
           margin-top: $spacing * 4;
         }
       }
+      &.start {
+        background-color: rgb(245, 245, 245);
+        background-color: $gray-dark-1;
+        border-bottom: 1px solid $gray-dark-3;
+        padding-bottom: $spacing * 8;
+        padding-top: $spacing * 4;
+        h2 {
+          color: $white;
+          margin-bottom: $spacing * 2;
+        }
+      }
+      .section__pattern {
+        @include background-image-default;
+        background-image: image-url("pattern.png");
+        height: 100%;
+        opacity: 0.5;
+        position: absolute;
+        width: 100%;
+        .section__content {
+          visibility: hidden;
+        }
+      }
       .section__content {
         max-width: $max-width;
         margin: 0 auto;
-        padding: $spacing * 5;
+        padding: $spacing * 5 $spacing;
         text-align: center;
         width: 100%;
+        .section__content__action {
+          margin-top: $spacing;
+          @include screen-xs {
+            @include span-columns(12);
+          }
+          @include screen-sm-min {
+            @include span-columns(6);
+          }
+          a {
+            @include screen-xs {
+              margin: 0 auto;
+            }
+            @include screen-sm-min {
+              max-width: 300px;
+              &.left {
+                float: right;
+              }
+              &.right {
+                float: left;
+              }
+            }
+            width: 100%;
+          }
+        }
         h2 {
           span {
             border-bottom: 1px solid $white;

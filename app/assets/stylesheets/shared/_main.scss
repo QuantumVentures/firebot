@@ -21,6 +21,7 @@ body {
     z-index: 0;
     .content  {
       color: $text-color;
+      padding-bottom: $footer-height;
     }
   }
 }
