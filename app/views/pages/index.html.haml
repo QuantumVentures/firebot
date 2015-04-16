@@ -87,7 +87,7 @@
               for your backend
     .clear
 
-%section.start.get-started
+= content_for :start_section_content do
   .section__content
     %h2
       Get started now
@@ -96,5 +96,12 @@
         = link_to "Login", login_path,
           class: "form__button--blue form__button--medium left"
       .section__content__action
-        = link_to "Sign up", new_user_path, class: "form__button--medium right"
+        = link_to "Sign up", new_user_path,
+          class: "form__button--medium right"
     .clear
+
+
+%section.start.get-started
+  .section__pattern
+    = yield :start_section_content
+  = yield :start_section_content

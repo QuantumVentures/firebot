@@ -23,11 +23,13 @@
         background-color: rgb(245, 245, 245);
         background-color: $gray-dark-1;
         border-bottom: 1px solid $gray-dark-3;
-        padding-bottom: $spacing * 8;
-        padding-top: $spacing * 4;
-        h2 {
-          color: $white;
-          margin-bottom: $spacing * 2;
+        .section__content {
+          padding-bottom: $spacing * 13;
+          padding-top: $spacing * 10;
+          h2 {
+            color: $white;
+            margin-bottom: $spacing * 2;
+          }
         }
       }
       .section__pattern {
@@ -37,6 +39,7 @@
         opacity: 0.5;
         position: absolute;
         width: 100%;
+        z-index: 0;
         .section__content {
           visibility: hidden;
         }
@@ -45,8 +48,10 @@
         max-width: $max-width;
         margin: 0 auto;
         padding: $spacing * 5 $spacing;
+        position: relative;
         text-align: center;
         width: 100%;
+        z-index: 1;
         .section__content__action {
           margin-top: $spacing;
           @include screen-xs {
