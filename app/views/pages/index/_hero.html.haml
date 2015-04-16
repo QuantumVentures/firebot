@@ -1,0 +1,13 @@
+.hero
+  .hero__background
+    .hero__background__tint
+    .hero__background__image
+    .hero__background__content
+      .hero__background__content__image
+        = image_tag "logo.png"
+      .hero__background__content__text
+        %h1
+          Firebot starts you up
+      .hero__background__content__actions
+        = link_to "Get started", "#", class: "js-button js-scroll-to",
+          data: { "scroll-to-key" => "get-started" }

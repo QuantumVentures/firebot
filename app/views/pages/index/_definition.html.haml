@@ -1,0 +1,14 @@
+= content_for :definition_section_content do
+  .section__content
+    %h2
+      What is a
+      <span>Backend</span>?
+    %p
+      Your backend includes a server, application, and database.
+      This is where all your business logic happens; from uploading images,
+      processing payments, sending emails, saving user information, etc.
+
+%section.definition
+  .section__pattern
+    = yield :definition_section_content
+  = yield :definition_section_content

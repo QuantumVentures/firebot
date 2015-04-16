@@ -1,0 +1,25 @@
+= content_for :start_section_content do
+  .section__content
+    %h2
+      Get started now
+    %div
+      - if logged_in?
+        .section__content__action
+          = link_to "View apps", backend_apps_path,
+            class: "form__button--blue form__button--medium left"
+        .section__content__action
+          = link_to "Create app", new_backend_app_path,
+            class: "form__button--medium right"
+      - else
+        .section__content__action
+          = link_to "Login", login_path,
+            class: "form__button--blue form__button--medium left"
+        .section__content__action
+          = link_to "Sign up", new_user_path,
+            class: "form__button--medium right"
+    .clear
+
+%section.start.get-started
+  .section__pattern
+    = yield :start_section_content
+  = yield :start_section_content
