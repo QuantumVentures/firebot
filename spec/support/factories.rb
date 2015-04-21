@@ -15,6 +15,10 @@ FactoryGirl.define do
     user
   end
 
+  factory :component do
+    name
+  end
+
   factory :feature do
     description { generate :name }
     loggable factory: :backend_app

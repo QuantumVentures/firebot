@@ -9,7 +9,7 @@ class Model < ActiveRecord::Base
   validates_presence_of :backend_app, :name
   validates_uniqueness_of :name, scope: :backend_app, case_sensitive: false
 
-  before_validation :default_schema
+  before_validation :set_default_json
   before_save :set_default_schema
 
   COLUMN_TYPES = %w(
@@ -27,9 +27,10 @@ class Model < ActiveRecord::Base
 
   def update_schema(key, options)
     if COLUMN_TYPES.index options[:type].to_s
+      required = options[:required].present? ? options[:required] : false
       self.schema[key.to_s] = {
         "relationship_to" => options[:relationship_to],
-        "required"        => options[:required],
+        "required"        => required,
         "type"            => options[:type]
       }
       true
@@ -41,17 +42,19 @@ class Model < ActiveRecord::Base
   private
 
   def column_types
-    if (schema_column_types - COLUMN_TYPES).size > 0
-      errors.add :schema, "invalid column type"
+    diff = schema_column_types - COLUMN_TYPES
+    if diff.size > 0
+      types = diff.join ", "
+      errors.add :schema, "invalid column type(s) #{types}"
     end
-  end
-
-  def default_schema
-    self.schema = {} if schema.nil?
   end
 
   def schema_column_types
     schema.values.map { |h| h["type"] }.uniq
+  end
+
+  def set_default_json
+    self.schema = {} if schema.nil?
   end
 
   def set_default_schema

@@ -14,7 +14,7 @@ describe Model do
               .scoped_to(:backend_app_id)
               .case_insensitive }
 
-  describe "validate column_types" do
+  describe "validate :column_types" do
     let(:column_type) { "string" }
 
     before { subject.schema["name"] = { "type" => column_type } }
