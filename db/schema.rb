@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150409142222) do
+ActiveRecord::Schema.define(version: 20150421050656) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,15 @@ ActiveRecord::Schema.define(version: 20150409142222) do
   add_index "backend_apps", ["deleted_at"], name: "index_backend_apps_on_deleted_at", where: "(deleted_at IS NULL)", using: :btree
   add_index "backend_apps", ["name", "user_id"], name: "index_backend_apps_on_name_and_user_id", unique: true, using: :btree
   add_index "backend_apps", ["uid"], name: "index_backend_apps_on_uid", unique: true, using: :btree
+
+  create_table "components", force: :cascade do |t|
+    t.string   "name",                       null: false
+    t.integer  "packages_count", default: 0
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  add_index "components", ["name"], name: "index_components_on_name", unique: true, using: :btree
 
   create_table "logs", force: :cascade do |t|
     t.integer  "loggable_id"
@@ -83,7 +92,7 @@ ActiveRecord::Schema.define(version: 20150409142222) do
     t.string   "token",                       null: false
     t.string   "type",                        null: false
     t.string   "tokenable_uid"
-    t.json     "metadata",       default: {}, null: false
+    t.jsonb    "metadata",       default: {}, null: false
     t.datetime "deleted_at"
     t.datetime "expires_at"
     t.datetime "created_at",                  null: false

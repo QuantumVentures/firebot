@@ -5,19 +5,19 @@ class User < ActiveRecord::Base
 
   attr_accessor :full_name
 
-  validate :validate_password_create, on: :create
-  validate :validate_password_update, on: :update
-  validates :email, presence: true, length: { maximum: 255 },
-                    format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i },
-                    uniqueness: { case_sensitive: false }
-  validates_presence_of :first_name, :last_name
-
   with_options dependent: :destroy do
     has_many :access_tokens
     has_many :backend_apps
     has_many :logs,            as: :responsible
     has_many :payment_methods, as: :liable
   end
+
+  validate :validate_password_create, on: :create
+  validate :validate_password_update, on: :update
+  validates :email, presence: true, length: { maximum: 255 },
+                    format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i },
+                    uniqueness: { case_sensitive: false }
+  validates_presence_of :first_name, :last_name
 
   has_secure_password validations: false
 

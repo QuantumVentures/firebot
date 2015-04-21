@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   root "pages#index"
 
+  get "test" => "pages#test"
+
   # Sessions
   get "login"  => "sessions#login",  as: :login
   get "logout" => "sessions#logout", as: :logout
