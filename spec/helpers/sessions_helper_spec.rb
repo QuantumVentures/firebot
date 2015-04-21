@@ -18,4 +18,20 @@ describe SessionsHelper do
       end
     end
   end
+
+  describe "#logged_in?" do
+    context "when current_user not nil" do
+      before { session[:user_id] = user.id }
+
+      it "should be true" do
+        expect(helper.logged_in?).to be true
+      end
+    end
+
+    context "when current_user nil" do
+      it "should be false" do
+        expect(helper.logged_in?).to be false
+      end
+    end
+  end
 end
