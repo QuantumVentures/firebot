@@ -1,0 +1,11 @@
+.content__body
+  %h3
+    Add a model
+  .form
+    = render "shared/forms/errors"
+    = form_for @model, url: backend_app_models_path(@app) do |f|
+      .form__field
+        = f.text_field :name, class: "form__input--width", placeholder: "Name"
+      = f.button "Save", class: "form__button"
+      = link_to "Cancel", backend_app_models_path(@app),
+        class: "form__button--gray"

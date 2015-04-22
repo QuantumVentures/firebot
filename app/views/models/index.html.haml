@@ -1,0 +1,9 @@
+- @models.each do |model|
+  %h3
+    = model.name
+  %ul
+    - model.schema.each do |column, hash|
+      %li
+        %p
+          = column
+          (#{hash["type"]})

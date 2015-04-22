@@ -20,10 +20,7 @@
         %p
           A review is written by the parent for the cat or dog
     .form
-      - if @errors
-        .form__errors
-          %p
-            = @errors
+      = render "shared/forms/errors"
       = form_tag backend_app_features_path @app do
         = hidden_field_tag :backend_app_id, @app.id
         .form__field

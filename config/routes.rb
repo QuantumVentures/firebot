@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   resources :backend_apps, path: "apps" do
     resources :features, only: %i(create new)
-    resources :models
+    resources :models, only: %i(create index new)
     member do
       get :status
     end
