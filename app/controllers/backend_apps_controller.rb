@@ -11,34 +11,28 @@ class BackendAppsController < ApplicationController
       redirect_to new_backend_app_feature_path @app
     else
       @errors = stringify_single_error @app.errors
-      @title  = "New App"
       render "new"
     end
   end
 
   def edit
-    @title = "Edit App"
   end
 
   def index
-    @apps  = current_user.apps
-    @title = "Apps"
+    @apps = current_user.apps
   end
 
   def new
-    @app   = current_user.apps.new
-    @title = "New App"
+    @app = current_user.apps.new
   end
 
   def show
-    @title = @app.name
   end
 
   def status
     @completed = features.completed.order(completed_at: :desc).limit(3).decorate
     @incompleted = features.incompleted.order(created_at: :asc).decorate
     @status = @incompleted.present? ? "Adding new features" : "Ready for use"
-    @title  = "Status"
   end
 
   def update
@@ -47,7 +41,6 @@ class BackendAppsController < ApplicationController
       redirect_to backend_app_path(@app)
     else
       @errors = stringify_single_error @app.errors
-      @title  = "Edit App"
       render "edit"
     end
   end

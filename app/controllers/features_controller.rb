@@ -11,14 +11,12 @@ class FeaturesController < ApplicationController
       redirect_to status_backend_app_path @app
     else
       @errors = "You must describe at least 1 feature"
-      @title  = "New Features"
       render "new"
     end
   end
 
   def new
     @features = @app.features.first
-    @title    = "New Features"
   end
 
   private

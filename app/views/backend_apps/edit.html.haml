@@ -1,7 +1,11 @@
+= content_for :page_title, "Edit #{@app.name}"
+
 = content_for :backend_app_fields_header do
   Edit your app
+
 = content_for :backend_app_fields_button do
   Update App
+
 = content_for :backend_app_fields_cancel do
   = link_to "Cancel", backend_app_path(@app),
     class: "form__button--gray form__button--medium"

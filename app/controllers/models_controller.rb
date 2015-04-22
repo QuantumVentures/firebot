@@ -11,19 +11,16 @@ class ModelsController < ApplicationController
       redirect_to backend_app_models_path @app
     else
       @errors = stringify_single_error @model.errors
-      @title  = "New Model"
       render "new"
     end
   end
 
   def index
     @models = @app.models
-    @title  = "Models"
   end
 
   def new
     @model = @app.models.new
-    @title = "New Model"
   end
 
   private
