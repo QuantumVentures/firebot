@@ -1,0 +1,12 @@
+.form__field
+  = text_field_tag :name, "", class: "form__input",
+    placeholder: "Column name"
+.form__field
+  = select_tag :type, options_for_select(Model::COLUMN_TYPES, "string"),
+    class: "form__input"
+  = text_field_tag :relationship_to, "", class: "form__input",
+    placeholder: "Relationship to"
+.form__field
+  %p
+    Required?
+  = check_box_tag :required

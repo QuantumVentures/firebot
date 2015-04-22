@@ -26,15 +26,19 @@ class Model < ActiveRecord::Base
     string
   ).freeze
 
-  def add_column(key, options)
+  def add_column(name, options)
     type = options[:type].to_s
     if COLUMN_TYPES.index type
-      self.schema[key.to_s.split(" ").join("_").downcase] = {
-        "relationship_to" => options[:relationship_to] || nil,
-        "required"        => options[:required] || false,
+      self.schema[name.to_s.split(" ").join("_").downcase] = {
+        "relationship_to" => default_relationship_to(options[:relationship_to]),
+        "required"        => default_required(options[:required]),
         "type"            => type
       }
     end
+  end
+
+  def remove_column(name)
+    self.schema.delete name
   end
 
   private
@@ -49,6 +53,14 @@ class Model < ActiveRecord::Base
       types = diff.join ", "
       errors.add :schema, "invalid column type(s) #{types}"
     end
+  end
+
+  def default_relationship_to(relationship_to)
+    relationship_to.present? ? relationship_to.capitalize : nil
+  end
+
+  def default_required(required)
+    required.present? && required ? true : false
   end
 
   def schema_column_types

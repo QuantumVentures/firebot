@@ -71,4 +71,12 @@ describe Model do
       end
     end
   end
+
+  describe "#remove_column" do
+    it "should remove the column from the schema" do
+      subject.schema = { "name" => {} }
+      subject.remove_column "name"
+      expect(subject.schema).not_to have_key "name"
+    end
+  end
 end

@@ -3,19 +3,23 @@ class ModelsController < ApplicationController
 
   before_action :require_login
   before_action :find_app
-  before_action :find_model, only: %i(edit update)
+  before_action :find_model, only: %i(destroy edit remove_column update)
 
   def create
     @model = @app.models.new permitted
-    if @model.valid?
-      add_column
-      @model.save
+    add_column
+    if @model.save
       flash[:success] = "Model created"
       redirect_to backend_app_models_path @app
     else
       @errors = stringify_single_error @model.errors
       render "new"
     end
+  end
+
+  def destroy
+    @model.destroy
+    redirect_to backend_app_models_path @app
   end
 
   def edit
@@ -29,13 +33,22 @@ class ModelsController < ApplicationController
     @model = @app.models.new
   end
 
+  def remove_column
+    @model.remove_column params[:name]
+    if @model.save
+      flash[:success] = "Column removed"
+      redirect_to edit_backend_app_model_path(@app, @model)
+    else
+      @errors = stringify_single_error @model.errors
+      render "edit"
+    end
+  end
+
   def update
-    @model.assign_attributes permitted
-    if @model.valid?
-      add_column
-      @model.save
-      flash[:success] = "Model saved"
-      redirect_to backend_app_models_path @app
+    add_column
+    if @model.update permitted
+      flash[:success] = "Model updated"
+      redirect_to edit_backend_app_model_path(@app, @model)
     else
       @errors = stringify_single_error @model.errors
       render "edit"

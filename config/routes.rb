@@ -10,7 +10,11 @@ Rails.application.routes.draw do
 
   resources :backend_apps, path: "apps" do
     resources :features, only: %i(create new)
-    resources :models
+    resources :models do
+      member do
+        post :remove_column, path: "remove-column"
+      end
+    end
     member do
       get :status
     end
