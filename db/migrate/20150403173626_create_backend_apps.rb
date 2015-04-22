@@ -5,7 +5,7 @@ class CreateBackendApps < ActiveRecord::Migration
       t.string     :name
       t.string     :uid
       t.text       :description
-      t.json       :metadata, null: false, default: {}
+      t.jsonb      :metadata, null: false, default: {}
       t.datetime   :deleted_at
 
       t.timestamps null: false

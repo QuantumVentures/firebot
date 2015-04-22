@@ -4,10 +4,10 @@ class Log < ActiveRecord::Base
   inheritable
   restoreable
 
-  validates_presence_of :description, :loggable
-
   belongs_to :loggable,    polymorphic: true
   belongs_to :responsible, polymorphic: true
+
+  validates_presence_of :description, :loggable
 
   class << self
     def completed

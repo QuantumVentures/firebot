@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150421183046) do
+ActiveRecord::Schema.define(version: 20150421202223) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20150421183046) do
     t.string   "name"
     t.string   "uid"
     t.text     "description"
-    t.json     "metadata",    default: {}, null: false
+    t.jsonb    "metadata",    default: {}, null: false
     t.datetime "deleted_at"
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
@@ -32,11 +32,23 @@ ActiveRecord::Schema.define(version: 20150421183046) do
   add_index "backend_apps", ["uid"], name: "index_backend_apps_on_uid", unique: true, using: :btree
 
   create_table "components", force: :cascade do |t|
-    t.string "name",                null: false
-    t.jsonb  "models", default: {}
+    t.string   "name",                    null: false
+    t.jsonb    "models",     default: {}, null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
   add_index "components", ["name"], name: "index_components_on_name", unique: true, using: :btree
+
+  create_table "compositions", force: :cascade do |t|
+    t.integer  "component_id",    null: false
+    t.integer  "composable_id",   null: false
+    t.string   "composable_type", null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "compositions", ["component_id", "composable_id"], name: "index_compositions_on_component_id_and_composable_id", unique: true, using: :btree
 
   create_table "logs", force: :cascade do |t|
     t.integer  "loggable_id"
@@ -57,7 +69,7 @@ ActiveRecord::Schema.define(version: 20150421183046) do
 
   create_table "models", force: :cascade do |t|
     t.integer  "backend_app_id",              null: false
-    t.json     "schema",         default: {}, null: false
+    t.jsonb    "schema",         default: {}, null: false
     t.string   "name",                        null: false
     t.datetime "deleted_at"
     t.datetime "created_at",                  null: false
