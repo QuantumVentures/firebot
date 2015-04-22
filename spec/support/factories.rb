@@ -19,6 +19,11 @@ FactoryGirl.define do
     name
   end
 
+  factory :composition do
+    component
+    composable factory: :component
+  end
+
   factory :feature do
     description { generate :name }
     loggable factory: :backend_app

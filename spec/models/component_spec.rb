@@ -3,6 +3,19 @@ require "rails_helper"
 describe Component do
   it_should_behave_like :crud
 
+  it { should have_many(:compositions).dependent :destroy }
+  it do
+    should have_many(:components).source(:composable).through :compositions
+  end
+  it do
+    should have_many(:inverse_compositions).class_name("Composition")
+                                          .with_foreign_key(:composable_id)
+                                          .dependent :destroy
+  end
+  it do
+    should have_many(:parents).source(:component).through :inverse_compositions
+  end
+
   it { should validate_presence_of :name }
   it { should validate_uniqueness_of :name }
 
