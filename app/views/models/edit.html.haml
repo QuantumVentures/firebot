@@ -1,11 +1,11 @@
-= content_for :page_title, "New Model"
+= content_for :page_title, "Edit #{@model.name}"
 
 .content__body
   %h3
-    Add a model
+    Edit model
   .form
     = render "shared/forms/errors"
-    = form_for @model, url: backend_app_models_path(@app) do |f|
+    = form_for @model, url: backend_app_model_path(@app, @model) do |f|
       .form__field
         %p
           The name of the model will be capitalized.
@@ -13,7 +13,8 @@
           (e.g. User, Car, Pet, etc.)
         = f.text_field :name, autocomplete: "off", class: "form__input--width"
       .form__field
-        = text_field :name, "", class: "form__input", placeholder: "Column name"
+        = text_field_tag :name, "", class: "form__input",
+          placeholder: "Column name"
       .form__field
         = select_tag :type, options_for_select(Model::COLUMN_TYPES, "string"),
           class: "form__input"
@@ -24,6 +25,7 @@
       .form__field
         = text_field_tag :relationship_to, "", class: "form__input",
           placeholder: "Relationship to"
-      = f.button "Create", class: "form__button"
+      = f.button "Save", class: "form__button"
       = link_to "Cancel", backend_app_models_path(@app),
         class: "form__button--gray"
+

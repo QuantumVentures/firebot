@@ -10,6 +10,7 @@ class Model < ActiveRecord::Base
   validates_uniqueness_of :name, scope: :backend_app, case_sensitive: false
 
   before_validation :set_default_json
+  before_save :capitalize_name
   before_save :set_default_schema
 
   COLUMN_TYPES = %w(
@@ -25,21 +26,22 @@ class Model < ActiveRecord::Base
     string
   ).freeze
 
-  def update_schema(key, options)
-    if COLUMN_TYPES.index options[:type].to_s
-      required = options[:required].present? ? options[:required] : false
-      self.schema[key.to_s] = {
-        "relationship_to" => options[:relationship_to],
-        "required"        => required,
-        "type"            => options[:type]
+  def add_column(key, options)
+    type = options[:type].to_s
+    if COLUMN_TYPES.index type
+      self.schema[key.to_s.split(" ").join("_").downcase] = {
+        "relationship_to" => options[:relationship_to] || nil,
+        "required"        => options[:required] || false,
+        "type"            => type
       }
-      true
-    else
-      false
     end
   end
 
   private
+
+  def capitalize_name
+    self.name = name.try :capitalize
+  end
 
   def column_types
     diff = schema_column_types - COLUMN_TYPES
@@ -64,14 +66,14 @@ class Model < ActiveRecord::Base
   end
 
   def set_created_at_schema
-    update_schema :created_at, required: false, type: "date"
+    add_column :created_at, required: false, type: "date"
   end
 
   def set_id_schema
-    update_schema :id, required: false, type: "string"
+    add_column :id, required: false, type: "string"
   end
 
   def set_updated_at_schema
-    update_schema :updated_at, required: false, type: "date"
+    add_column :updated_at, required: false, type: "date"
   end
 end

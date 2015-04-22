@@ -1,8 +1,10 @@
 = content_for :page_title, "Models"
 
+= link_to "New Model", new_backend_app_model_path(@app)
 - @models.each do |model|
   %h3
     = model.name
+    = link_to "edit", edit_backend_app_model_path(@app, model)
   %ul
     - model.schema.each do |column, hash|
       %li

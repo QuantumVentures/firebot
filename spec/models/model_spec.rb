@@ -35,42 +35,39 @@ describe Model do
   end
 
   describe ".before_save" do
-    before { subject.save }
+    it "should capitalize the name" do
+      name = subject.name
+      subject.save
+      expect(subject.name).to eq name.capitalize
+    end
 
     it "should set created_at, id, and updated_at in the schema" do
+      subject.save
       expect(subject.schema["created_at"]["type"]).to eq "date"
       expect(subject.schema["id"]["type"]).to eq "string"
       expect(subject.schema["updated_at"]["type"]).to eq "date"
     end
   end
 
-  describe "#update_schema" do
+  describe "#add_column" do
     let(:action) do
-      subject.update_schema("name",
+      subject.add_column(name,
         required: false, relationship_to: relationship_to, type: type
       )
     end
+    let(:name)            { "First Name" }
     let(:relationship_to) { "User" }
     let(:type)            { "string" }
 
     context "with valid type" do
       it "should have the correct info in the schema" do
         action
-        expect(subject.schema["name"]["required"]).to eq false
-        expect(subject.schema["name"]["relationship_to"]).to eq relationship_to
-        expect(subject.schema["name"]["type"]).to eq "string"
-      end
-
-      it "should return true" do
-        expect(action).to be true
-      end
-    end
-
-    context "with invalid type" do
-      let(:type) { "foo" }
-
-      it "should return false" do
-        expect(action).to be false
+        column_name = name.split(" ").join("_").downcase
+        expect(subject.schema[column_name]["required"]).to eq false
+        expect(subject.schema[column_name]["relationship_to"]).to eq(
+          relationship_to
+        )
+        expect(subject.schema[column_name]["type"]).to eq "string"
       end
     end
   end

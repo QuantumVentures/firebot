@@ -15,15 +15,15 @@ app = user.apps.create!(
 )
 
 model = app.models.new name: "Car"
-model.update_schema :condition, required: true, type: "string"
-model.update_schema :features, required: false, type: "array"
-model.update_schema :make, required: true, type: "string"
-model.update_schema :model, required: true, type: "string"
-model.update_schema :salvaged, required: true, type: "boolean"
-model.update_schema(:user,
+model.add_column :condition, required: true, type: "string"
+model.add_column :features, required: false, type: "array"
+model.add_column :make, required: true, type: "string"
+model.add_column :model, required: true, type: "string"
+model.add_column :salvaged, required: true, type: "boolean"
+model.add_column(:user,
   required: false, relationship_to: "User", type: "relation"
 )
-model.update_schema :year, required: true, type: "number"
+model.add_column :year, required: true, type: "number"
 model.save!
 
 token = user.access_tokens.create! tokenable: app
