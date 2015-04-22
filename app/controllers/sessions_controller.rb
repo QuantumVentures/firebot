@@ -14,7 +14,6 @@ class SessionsController < ApplicationController
   end
 
   def login
-    @title = "Login"
   end
 
   def logout

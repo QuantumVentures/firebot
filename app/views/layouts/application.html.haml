@@ -2,12 +2,12 @@
 %html{ lang: "en" }
   %head
     %title
-      = title
+      = page_title
     = favicon_link_tag "favicon.png"
     = stylesheet_link_tag "application", media: :all
     = csrf_meta_tags
     %meta{ content: mobile_meta_content, name: "viewport" }
-  = content_tag :body, body_attributes do
+  = content_tag :body, class: body_class do
     .wrapper
       = render "header"
       = render "flash"

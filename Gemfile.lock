@@ -137,6 +137,7 @@ GEM
     factory_girl_rails (4.5.0)
       factory_girl (~> 4.5.0)
       railties (>= 3.0.0)
+    flutie (2.0.0)
     font-awesome-rails (4.3.0.0)
       railties (>= 3.2, < 5.0)
     foreman (0.63.0)
@@ -418,6 +419,7 @@ DEPENDENCIES
   dotenv-rails
   draper
   factory_girl_rails
+  flutie
   font-awesome-rails
   foreman
   formulaic

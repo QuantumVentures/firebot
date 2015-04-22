@@ -13,8 +13,7 @@ class UsersController < ApplicationController
   end
 
   def new
-    @title = "Sign up"
-    @user  = User.new
+    @user = User.new
   end
 
   private

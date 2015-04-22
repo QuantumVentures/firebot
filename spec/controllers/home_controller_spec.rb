@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe PagesController do
+describe HomeController do
   describe "GET #index" do
     before { get :index }
 

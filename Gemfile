@@ -54,6 +54,7 @@ end
 gem "bourbon"
 gem "bitters"
 gem "coffee-rails", "~> 4.1.0"
+gem "flutie"
 gem "font-awesome-rails"
 gem "haml-rails"
 gem "handlebars_assets"
