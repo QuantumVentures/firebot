@@ -2,8 +2,8 @@
 
 .content__body
   %h3
-    = link_to @app.name, @app
-    \- Models
+    = render "models/shared/index_breadcrumbs"
+    Models
   %p
     Add a
     = link_to "new model", new_backend_app_model_path(@app)

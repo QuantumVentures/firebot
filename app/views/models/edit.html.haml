@@ -2,8 +2,7 @@
 
 .content__body
   %h3
-    = link_to @app.name, @app
-    \-
+    = render "models/shared/index_breadcrumbs"
     = link_to "Models", backend_app_models_path(@app)
     \- Edit #{@model.name}
     = form_tag backend_app_model_path(@app, @model), method: :delete do

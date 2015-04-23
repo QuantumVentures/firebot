@@ -2,6 +2,8 @@
 
 .content__body
   %h3
+    = link_to "Apps", backend_apps_path
+    \-
     = @app.name
   %p
     - if @app.description.present?
