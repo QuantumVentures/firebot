@@ -26,7 +26,7 @@ class ModelsController < ApplicationController
   end
 
   def index
-    @models = @app.models.sort_by { |model| model.name }
+    @models = @app.models.decorate.sort_by { |model| model.name }
   end
 
   def new
@@ -66,7 +66,7 @@ class ModelsController < ApplicationController
   end
 
   def permitted_params
-    %i(name)
+    %i(description name)
   end
 
   def add_column

@@ -71,6 +71,7 @@ ActiveRecord::Schema.define(version: 20150421202223) do
     t.integer  "backend_app_id",              null: false
     t.jsonb    "schema",         default: {}, null: false
     t.string   "name",                        null: false
+    t.text     "description"
     t.datetime "deleted_at"
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false

@@ -18,7 +18,11 @@
             The name of the model will be capitalized.
             For best practices, try to make the model name singular
             (e.g. User, Car, Pet, etc.)
-        = f.text_field :name, autocomplete: "off", class: "form__input--width"
+        = f.text_field :name, autocomplete: "off", class: "form__input--width",
+          placeholder: "The name of your model"
+      .form__field
+        = f.text_area :description, class: "form__textarea--width",
+          placeholder: "A brief description of this model"
       = render "models/shared/column_fields"
       = f.button "Save", class: "form__button"
       = link_to "Cancel", backend_app_models_path(@app),

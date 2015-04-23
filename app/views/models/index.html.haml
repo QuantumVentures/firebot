@@ -12,8 +12,11 @@
       - @models.each do |model|
         %li
           %p
-            = model.name
-            = link_to "edit", edit_backend_app_model_path(@app, model)
+            = link_to edit_backend_app_model_path(@app, model) do
+              = model.name
+              \-
+              %i
+                = model.description
           %table
             %tr
               %td

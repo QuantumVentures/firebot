@@ -2,6 +2,7 @@ require "rails_helper"
 
 describe ModelsController do
   let(:backend_app) { create :backend_app }
+  let(:description) { "description" }
   let(:model)       { create :model, backend_app: backend_app }
 
   before { controller.log_in backend_app.user }
@@ -10,7 +11,10 @@ describe ModelsController do
     let(:name) { "name" }
 
     subject do
-      post :create, backend_app_id: backend_app.id, model: { name: name }
+      post :create, backend_app_id: backend_app.id, model: {
+        description: description,
+        name:        name
+      }
     end
 
     context "with valid attributes" do
@@ -107,13 +111,17 @@ describe ModelsController do
 
     subject do
       patch :update, backend_app_id: backend_app.id, id: model.id,
-                     model: { name: name }, name: "age", type: "number"
+                     name: "age", type: "number", model: {
+                                                    description: description,
+                                                    name:        name
+                                                  }
     end
 
     context "with valid attributes" do
       it "should update the model" do
         subject
         model.reload
+        expect(model.description).to eq description
         expect(model.name).to eq name
       end
 

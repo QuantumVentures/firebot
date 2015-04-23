@@ -4,6 +4,7 @@ class CreateModels < ActiveRecord::Migration
       t.references :backend_app, null: false
       t.jsonb      :schema,      null: false, default: {}
       t.string     :name,        null: false
+      t.text       :description
       t.datetime   :deleted_at
 
       t.timestamps null: false
