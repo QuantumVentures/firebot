@@ -6,12 +6,14 @@
   %p
     - if @app.description.present?
       = @app.description
-      \-
-    = link_to "edit", edit_backend_app_path(@app)
-  %p
-    = link_to "Models", backend_app_models_path(@app)
-  %p
-    = link_to "Status", status_backend_app_path(@app)
-  %p
-    Add
-    = link_to "more features", new_backend_app_feature_path(@app)
+  .content__body__list
+    %ul{ type: "circle" }
+      %li
+        %p
+          = link_to "Components", "#"
+      %li
+        %p
+          = link_to "Models", backend_app_models_path(@app)
+      %li
+        %p
+          = link_to "Documentation", "#"

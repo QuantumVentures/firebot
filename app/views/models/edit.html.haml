@@ -2,7 +2,10 @@
 
 .content__body
   %h3
-    Edit model
+    = link_to @app.name, @app
+    \-
+    = link_to "Models", backend_app_models_path(@app)
+    \- Edit #{@model.name}
     = form_tag backend_app_model_path(@app, @model), method: :delete do
       = button_tag "Delete"
   .content__body__list

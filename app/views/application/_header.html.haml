@@ -8,19 +8,18 @@
       .header__navigation--right
         - if logged_in?
           .header__navigation__links
-            = link_to "New App", new_backend_app_path
+            = link_to "Help", "#"
           .header__user
-            .header__user__image{ style: "background-image: url(#{image_path "user-default.png"});" }
+            .header__user__image{ style: user_background_image(current_user) }
             .header__user__name
               = current_user.first_name_capitalized
             .header__user__menu
               %ul
                 %li
+                  -# Edit, Billing
+                  = link_to "Account", "#"
+                %li
                   = link_to "Apps", backend_apps_path
-                %li
-                  = link_to "Billing", "#"
-                %li
-                  = link_to "Settings", "#"
                 %li
                   = link_to "Logout", logout_path
         - else

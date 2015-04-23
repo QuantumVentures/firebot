@@ -2,7 +2,10 @@
 
 .content__body
   %h3
-    Add a model
+    = link_to @app.name, @app
+    \-
+    = link_to "Models", backend_app_models_path(@app)
+    \- New Model
   .form
     = render "shared/forms/errors"
     = form_for @model, url: backend_app_models_path(@app) do |f|

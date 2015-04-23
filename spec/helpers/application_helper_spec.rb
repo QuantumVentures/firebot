@@ -1,12 +1,6 @@
 require "rails_helper"
 
 describe ApplicationHelper do
-  # describe "#body_attributes" do
-  #   it "should have a hash with class" do
-  #     expect(helper.body_attributes).to have_key :class
-  #   end
-  # end
-
   describe "#mobile_meta_content" do
     it "should have the write text" do
       expect(helper.mobile_meta_content).to eq(
@@ -15,9 +9,10 @@ describe ApplicationHelper do
     end
   end
 
-  # describe "#title" do
-  #   it "should equal Firebot when @title is nil" do
-  #     expect(helper.title).to eq "Firebot"
-  #   end
-  # end
+  describe "#user_background_image" do
+    it "should return a string" do
+      user = create :user
+      expect(helper.user_background_image user).to include "background-image"
+    end
+  end
 end

@@ -6,4 +6,7 @@
 = content_for :backend_app_fields_button do
   Create App
 
+= content_for :backend_app_fields_cancel do
+  = link_to "Cancel", backend_apps_path, class: "form__button--gray"
+
 = render "backend_apps/shared/fields"

@@ -23,6 +23,9 @@
     cursor: pointer;
   }
 }
+a.form__button {
+  display: inline-block;
+}
 .form__button--gray {
   @extend .form__button;
   background-color: $gray-light-2;
