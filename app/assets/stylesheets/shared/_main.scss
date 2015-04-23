@@ -7,7 +7,6 @@ html, body {
 body {
   @include roboto-light;
   background-color: $background-color;
-  box-sizing: border-box;
   font-weight: $font-weight-normal;
   overflow-x: hidden;
   .wrapper {
