@@ -7,7 +7,6 @@
   Update App
 
 = content_for :backend_app_fields_cancel do
-  = link_to "Cancel", backend_app_path(@app),
-    class: "form__button--gray form__button--medium"
+  = link_to "Cancel", backend_app_path(@app), class: "form__button--gray"
 
 = render "backend_apps/shared/fields"
