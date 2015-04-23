@@ -16,10 +16,7 @@ describe BackendAppsController do
       end
 
       it "should redirect_to new_backend_app_feature_path" do
-        action
-        expect(controller).to redirect_to(
-          new_backend_app_feature_path user.apps.first
-        )
+        expect(action).to redirect_to(backend_app_path user.apps.first)
       end
     end
 

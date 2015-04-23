@@ -8,7 +8,7 @@ class BackendAppsController < ApplicationController
     @app = current_user.apps.new permitted
     if @app.save
       flash[:success] = "App successfully created"
-      redirect_to new_backend_app_feature_path @app
+      redirect_to backend_app_path @app
     else
       @errors = stringify_single_error @app.errors
       render "new"

@@ -3,10 +3,10 @@ class SessionsController < ApplicationController
   before_action :require_logout, only: %i(create login)
 
   def create
-    user = User.find_by(email: params[:email])
+    user = User.find_by email: params[:email]
     if user && user.authenticate(params[:password])
       log_in user
-      redirect_to root_path
+      redirect_to backend_apps_path
     else
       @errors = "Invalid email and/or password"
       render "login"

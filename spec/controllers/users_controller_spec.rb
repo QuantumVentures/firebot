@@ -2,17 +2,22 @@ require "rails_helper"
 
 describe UsersController do
   describe "POST create" do
-    let(:action) { post :create, user: params }
     let(:params) { attributes_for(:user).merge({ full_name: "f l" }) }
+
+    subject { post :create, user: params }
 
     context "with correct params" do
       it "should create a user" do
-        expect{action}.to change{User.count}.by 1
+        expect{subject}.to change{User.count}.by 1
       end
 
       it "should log_in user" do
         expect(controller).to receive :log_in
-        action
+        subject
+      end
+
+      it "should redirect to new_backend_app_path" do
+        expect(subject).to redirect_to new_backend_app_path
       end
     end
 
@@ -20,11 +25,11 @@ describe UsersController do
       let(:params) { { full_name: "t l" } }
 
       it "should not create a user" do
-        expect{action}.to change{User.count}.by 0
+        expect{subject}.to change{User.count}.by 0
       end
 
       it "should have errors" do
-        action
+        subject
         expect(assigns :errors).not_to be_nil
       end
     end

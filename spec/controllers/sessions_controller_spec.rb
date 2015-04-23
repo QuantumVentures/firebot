@@ -6,9 +6,15 @@ describe SessionsController do
 
   describe "POST #create" do
     context "with correct password" do
+      subject { post :create, email: user.email, password: password }
+
       it "should log_in user" do
         expect(controller).to receive :log_in
-        post :create, email: user.email, password: password
+        subject
+      end
+
+      it "should redirect to backend_apps_path" do
+        expect(subject).to redirect_to backend_apps_path
       end
     end
 
@@ -29,11 +35,17 @@ describe SessionsController do
   end
 
   describe "GET #logout" do
+    subject { get :logout }
+
     before { controller.log_in user }
 
     it "should log_out user" do
       expect(controller).to receive :log_out
-      get :logout
+      subject
     end
+
+    it "should redirect to root_path" do
+        expect(subject).to redirect_to root_path
+      end
   end
 end
