@@ -4,7 +4,7 @@
   %h3
     = render "models/shared/index_breadcrumbs"
     = link_to "Models", backend_app_models_path(@app)
-    \- New Model
+    \- New
   .form
     = render "shared/forms/errors"
     = form_for @model, url: backend_app_models_path(@app) do |f|

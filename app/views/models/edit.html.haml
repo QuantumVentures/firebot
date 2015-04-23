@@ -4,7 +4,7 @@
   %h3
     = render "models/shared/index_breadcrumbs"
     = link_to "Models", backend_app_models_path(@app)
-    \- Edit #{@model.name}
+    \- #{@model.name}
     = form_tag backend_app_model_path(@app, @model), method: :delete do
       = button_tag "Delete"
   .content__body__list
