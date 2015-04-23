@@ -1,13 +1,43 @@
 = content_for :page_title, "Models"
 
-= link_to "New Model", new_backend_app_model_path(@app)
-- @models.each do |model|
+.content__body
   %h3
-    = model.name
-    = link_to "edit", edit_backend_app_model_path(@app, model)
-  %ul
-    - model.schema.each do |column, hash|
-      %li
-        %p
-          = column
-          (#{hash["type"]})
+    Models
+  %p
+    Add a
+    = link_to "new model", new_backend_app_model_path(@app)
+  .content__body__list
+    %ol
+      - @models.each do |model|
+        %li
+          %p
+            = model.name
+            = link_to "edit", edit_backend_app_model_path(@app, model)
+          %table
+            %tr
+              %td
+                %p
+                  Column name
+              %td
+                %p
+                  Data type
+              %td
+                %p
+                  Required
+              %td
+                %p
+                  Relationship to
+            - model.schema.sort.each do |key, hash|
+              %tr
+                %td
+                  %p
+                    = key
+                %td
+                  %p
+                    = hash["type"]
+                %td
+                  %p
+                    = hash["required"]
+                %td
+                  %p
+                    = hash["relationship_to"]

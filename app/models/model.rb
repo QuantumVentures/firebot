@@ -27,13 +27,11 @@ class Model < ActiveRecord::Base
   ).freeze
 
   def add_column(name, options)
-    type = options[:type].to_s
-    if COLUMN_TYPES.index type
-      self.schema[name.to_s.split(" ").join("_").downcase] = {
-        "relationship_to" => default_relationship_to(options[:relationship_to]),
-        "required"        => default_required(options[:required]),
-        "type"            => type
-      }
+    column = formatted_column_name name
+    if column_exists? column
+      update_column column, options
+    else
+      add_new_column column, options
     end
   end
 
@@ -43,8 +41,22 @@ class Model < ActiveRecord::Base
 
   private
 
+  def add_new_column(column, options)
+    self.schema[column] = {
+      "created_at"      => Time.zone.now,
+      "relationship_to" => default_relationship_to(options[:relationship_to]),
+      "required"        => default_required(options[:required]),
+      "type"            => options[:type].to_s,
+      "updated_at"      => Time.zone.now
+    }
+  end
+
   def capitalize_name
     self.name = name.try :capitalize
+  end
+
+  def column_exists?(name)
+    schema[name].present?
   end
 
   def column_types
@@ -61,6 +73,10 @@ class Model < ActiveRecord::Base
 
   def default_required(required)
     required.present? && required ? true : false
+  end
+
+  def formatted_column_name(name)
+    name.to_s.split(" ").join("_").downcase
   end
 
   def schema_column_types
@@ -87,5 +103,29 @@ class Model < ActiveRecord::Base
 
   def set_updated_at_schema
     add_column :updated_at, required: false, type: "date"
+  end
+
+  def update_column(column, options)
+    if options[:relationship_to]
+      update_column_relationship_to column, options[:relationship_to]
+    end
+    if options[:required]
+      update_column_required column, options[:required]
+    end
+    if options[:type]
+      update_column_type column, options[:type].to_s
+    end
+  end
+
+  def update_column_relationship_to(column, value)
+    self.schema[column]["relationship_to"] = value
+  end
+
+  def update_column_required(column, value)
+    self.schema[column]["required"] = value
+  end
+
+  def update_column_type(column, value)
+    self.schema[column]["type"] = value
   end
 end

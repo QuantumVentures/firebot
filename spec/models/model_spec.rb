@@ -55,19 +55,40 @@ describe Model do
         required: false, relationship_to: relationship_to, type: type
       )
     end
+    let(:formatted_column_name) { name.split(" ").join("_").downcase }
     let(:name)            { "First Name" }
     let(:relationship_to) { "User" }
     let(:type)            { "string" }
 
-    context "with valid type" do
+    context "when column does not exist in the schema" do
       it "should have the correct info in the schema" do
         action
-        column_name = name.split(" ").join("_").downcase
-        expect(subject.schema[column_name]["required"]).to eq false
-        expect(subject.schema[column_name]["relationship_to"]).to eq(
+        expect(
+          subject.schema[formatted_column_name]["created_at"]
+        ).to be_present
+        expect(subject.schema[formatted_column_name]["required"]).to eq false
+        expect(subject.schema[formatted_column_name]["relationship_to"]).to eq(
           relationship_to
         )
-        expect(subject.schema[column_name]["type"]).to eq "string"
+        expect(subject.schema[formatted_column_name]["type"]).to eq "string"
+        expect(
+          subject.schema[formatted_column_name]["updated_at"]
+        ).to be_present
+      end
+    end
+
+    context "when column already exists in the schema" do
+      before { action }
+
+      it "should not change the created_at value in the schema" do
+        subject.add_column(
+          name, relationship_to: "Car", required: true, type: "number"
+        )
+        expect(subject.schema[formatted_column_name]["relationship_to"]).to eq(
+          "Car"
+        )
+        expect(subject.schema[formatted_column_name]["required"]).to be true
+        expect(subject.schema[formatted_column_name]["type"]).to eq "number"
       end
     end
   end

@@ -26,7 +26,7 @@ class ModelsController < ApplicationController
   end
 
   def index
-    @models = @app.models
+    @models = @app.models.sort_by { |model| model.name }
   end
 
   def new
