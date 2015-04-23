@@ -7,7 +7,7 @@ class ModelsController < ApplicationController
 
   def create
     @model = @app.models.new permitted
-    add_column
+    add_column if params[:name]
     if @model.save
       flash[:success] = "Model created"
       redirect_to backend_app_models_path @app
@@ -35,17 +35,13 @@ class ModelsController < ApplicationController
 
   def remove_column
     @model.remove_column params[:name]
-    if @model.save
-      flash[:success] = "Column removed"
-      redirect_to edit_backend_app_model_path(@app, @model)
-    else
-      @errors = stringify_single_error @model.errors
-      render "edit"
-    end
+    @model.save
+    flash[:success] = "Column removed"
+    redirect_to edit_backend_app_model_path(@app, @model)
   end
 
   def update
-    add_column
+    add_column if params[:name]
     if @model.update permitted
       flash[:success] = "Model updated"
       redirect_to edit_backend_app_model_path(@app, @model)
