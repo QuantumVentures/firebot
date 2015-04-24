@@ -1,0 +1,30 @@
+= content_for :page_title, "Add Component"
+
+.content__body
+  %h3
+    = render "backend_apps/shared/breadcrumbs"
+    = link_to "Components", index_backend_app_components_path(@app)
+    \-
+    Add Component
+  %p
+    Select a component and add it to your app
+  .content__body__list
+    %ul{ type: "circle" }
+      - @components.each do |component, components|
+        %li
+          %p
+            = component.name
+            \-
+            %i
+              = component.description
+            = form_for :composition,
+              url: backend_app_compositions_path(@app) do |f|
+              = f.hidden_field :component_id, value: component.id
+              = f.button "Add component"
+          - components.each do |comp|
+            %p
+              \-
+              = comp.name
+              \-
+              %i
+                = comp.description

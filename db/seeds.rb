@@ -37,7 +37,8 @@ token = user.access_tokens.create! tokenable: app
 # Components
 #-------------------------------------------------------------------------------
 # Users
-component_users = Component.create! name: "User"
+component_users = Component.create! name: "User",
+  description: "Store user information and login credentials."
 user_model = Model.new name: "User"
 user_model.add_column :email, required: true, type: "string"
 user_model.add_column :first_name, type: "string"
@@ -48,7 +49,8 @@ component_users.add_model user_model
 component_users.save!
 
 # Authentication
-component_auth = Component.create! name: "Authentication"
+component_auth = Component.create! name: "Authentication",
+  description: "Give access tokens for users to interact with your app."
 auth_model = Model.new name: "Authentication"
 auth_model.add_column :expires_at, required: true, type: "date"
 auth_model.add_column :token, required: true, type: "string"
@@ -60,7 +62,8 @@ component_auth.save!
 component_auth.compositions.create! composable: component_users
 
 # Feedback
-feedback = Component.create! name: "Feedback"
+feedback = Component.create! name: "Feedback",
+  description: "Allow your users to give feedback."
 feedback_model = Model.new name: "Feedback"
 feedback_model.add_column :body, required: true, type: "string"
 feedback_model.add_column :email, type: "string"

@@ -21,6 +21,11 @@ body {
     .content  {
       color: $text-color;
       padding-bottom: $footer-height;
+      a {
+        &:hover {
+          text-decoration: underline;
+        }
+      }
     }
   }
 }

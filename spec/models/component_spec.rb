@@ -24,6 +24,7 @@ describe Component do
     should have_many(:parents).source(:component).through :inverse_compositions
   end
 
+  it { should validate_presence_of :description }
   it { should validate_presence_of :name }
   it { should validate_uniqueness_of :name }
 

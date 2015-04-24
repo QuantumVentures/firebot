@@ -6,10 +6,16 @@ describe Composition do
   it { should belong_to :component }
   it { should belong_to :composable }
 
-  it { should validate_presence_of :component }
-  it { should validate_presence_of :composable }
-
   subject { build :composition }
+
+  describe "validates composed_of_same_component" do
+    context "when component_id equals composable_id" do
+      it "should not be valid" do
+        subject.composable = subject.component
+        expect(subject.valid?).to be false
+      end
+    end
+  end
 
   describe "validates_uniqueness_of component_id" do
     it "should be valid" do

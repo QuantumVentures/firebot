@@ -12,6 +12,15 @@ Rails.application.routes.draw do
     resources :components, only: %i() do
       collection do
         get :app_index, as: :index, path: "/"
+        get :app_new, as: :new, path: "/new"
+      end
+      member do
+        get :app_show, as: "", path: ""
+      end
+    end
+    resources :compositions, only: %i(create) do
+      collection do
+        delete :destroy
       end
     end
     resources :features, only: %i(create new)
@@ -24,7 +33,6 @@ Rails.application.routes.draw do
       get :status
     end
   end
-  resources :components, only: %i(index show)
   resources :sessions, only: %i(create)
   resources :users,    only: %i(create edit update)
 end

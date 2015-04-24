@@ -3,10 +3,12 @@ class Component < ActiveRecord::Base
 
   has_many :backend_apps, source: :composable, source_type: "BackendApp",
                           through: :backend_app_compositions
-  has_many :backend_app_compositions, class_name: "Composition",
-                                      dependent: :destroy
+  has_many :backend_app_compositions,
+    -> { where composable_type: "BackendApp" }, class_name: "Composition",
+    dependent: :destroy
 
-  has_many :compositions, dependent: :destroy
+  has_many :compositions, -> { where composable_type: "Component" },
+                          dependent: :destroy
   has_many :components, source: :composable, source_type: "Component",
                         through: :compositions
 
@@ -16,7 +18,7 @@ class Component < ActiveRecord::Base
   has_many :parents, source: :component, through: :inverse_compositions
 
   validate :column_types
-  validates_presence_of :name
+  validates_presence_of :description, :name
   validates_uniqueness_of :name
 
   before_validation :set_default_json

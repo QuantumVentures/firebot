@@ -2,6 +2,7 @@ class CreateComponents < ActiveRecord::Migration
   def change
     create_table :components do |t|
       t.string :name,   null: false
+      t.text   :description
       t.jsonb  :models, null: false, default: {}
 
       t.timestamps null: false

@@ -4,3 +4,25 @@
   %h3
     = render "backend_apps/shared/breadcrumbs"
     Components
+  %p
+    Add a
+    = link_to "new component", new_backend_app_components_path(@app)
+  .content__body__list
+    %ul{ type: "circle" }
+      - @components.each do |component, components|
+        %li
+          %p
+            = link_to component.name,
+              backend_app_component_path(@app, component)
+          = form_tag backend_app_compositions_path(@app), method: :delete do
+            = hidden_field_tag :component_id, component.id
+            = button_tag "Remove component"
+        - components.each do |comp|
+          %li
+            %p
+              = comp.name
+              \-
+              %i
+                subcomponent of
+                = link_to component.name,
+                  backend_app_component_path(@app, component)

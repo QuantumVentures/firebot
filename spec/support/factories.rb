@@ -17,6 +17,7 @@ FactoryGirl.define do
   end
 
   factory :component do
+    description { generate :name }
     name
   end
 

@@ -32,10 +32,11 @@ ActiveRecord::Schema.define(version: 20150421202223) do
   add_index "backend_apps", ["uid"], name: "index_backend_apps_on_uid", unique: true, using: :btree
 
   create_table "components", force: :cascade do |t|
-    t.string   "name",                    null: false
-    t.jsonb    "models",     default: {}, null: false
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.string   "name",                     null: false
+    t.text     "description"
+    t.jsonb    "models",      default: {}, null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
   add_index "components", ["name"], name: "index_components_on_name", unique: true, using: :btree
