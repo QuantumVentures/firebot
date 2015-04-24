@@ -30,6 +30,8 @@ describe Component do
 
   it { should respond_to :apps }
 
+  let(:component) { create :component }
+
   subject { build :component }
 
   describe "#validate :column_types" do
@@ -53,8 +55,6 @@ describe Component do
   end
 
   describe "#add_component" do
-    let(:component) { create :component }
-
     before do
       subject.save
       subject.add_component component
@@ -71,6 +71,18 @@ describe Component do
     it "should add a key and value pair to the models" do
       subject.add_model model
       expect(subject.models[model.name]).to eq model.schema
+    end
+  end
+
+  describe "#remove_component" do
+    before do
+      subject.save
+      subject.add_component component
+      subject.remove_component component
+    end
+
+    it "should not include the component" do
+      expect(subject.components).not_to include component
     end
   end
 end

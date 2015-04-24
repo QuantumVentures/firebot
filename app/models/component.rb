@@ -31,6 +31,10 @@ class Component < ActiveRecord::Base
     self.models[model.name] = model.schema
   end
 
+  def remove_component(component)
+    compositions.find_by(composable_id: component.id).destroy
+  end
+
   private
 
   def column_types
