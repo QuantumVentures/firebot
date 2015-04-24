@@ -34,10 +34,12 @@ describe BackendAppsController do
     end
   end
 
-  describe "GET edit" do
-    before { get :edit, id: backend_app.id }
+  %i(documentation edit).each do |action|
+    describe "GET #{action.to_s}" do
+      before { get action, id: backend_app.id }
 
-    it { should respond_with :success }
+      it { should respond_with :success }
+    end
   end
 
   describe "GET index" do

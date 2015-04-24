@@ -17,7 +17,9 @@ Rails.application.routes.draw do
         post :remove_column, path: "remove-column"
       end
     end
+
     member do
+      get :documentation
       get :status
     end
   end

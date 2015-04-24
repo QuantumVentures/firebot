@@ -2,7 +2,7 @@ class BackendAppsController < ApplicationController
   include BackendAppFindable
 
   before_action :require_login
-  before_action :find_app, only: %i(edit show status update)
+  before_action :find_app, only: %i(documentation edit show status update)
 
   def create
     @app = current_user.apps.new permitted
@@ -13,6 +13,9 @@ class BackendAppsController < ApplicationController
       @errors = stringify_single_error @app.errors
       render "new"
     end
+  end
+
+  def documentation
   end
 
   def edit
