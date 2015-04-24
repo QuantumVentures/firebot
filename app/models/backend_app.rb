@@ -5,10 +5,14 @@ class BackendApp < ActiveRecord::Base
 
   with_options dependent: :destroy do
     has_many :access_tokens, as: :tokenable
-    has_many :features,      as: :loggable
-    has_many :logs,          as: :loggable
+    has_many :compositions, -> { where composable_type: "BackendApp" },
+                            foreign_key: :composable_id
+    has_many :features, as: :loggable
+    has_many :logs, as: :loggable
     has_many :models
   end
+
+  has_many :components, through: :compositions
 
   belongs_to :user
 

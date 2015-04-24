@@ -1,6 +1,11 @@
 class Component < ActiveRecord::Base
   include ApplicationModel
 
+  has_many :backend_apps, source: :composable, source_type: "BackendApp",
+                          through: :backend_app_compositions
+  has_many :backend_app_compositions, class_name: "Composition",
+                                      dependent: :destroy
+
   has_many :compositions, dependent: :destroy
   has_many :components, source: :composable, source_type: "Component",
                         through: :compositions
@@ -15,6 +20,8 @@ class Component < ActiveRecord::Base
   validates_uniqueness_of :name
 
   before_validation :set_default_json
+
+  alias_method :apps, :backend_apps
 
   def add_model(model)
     self.models[model.name] = model.schema

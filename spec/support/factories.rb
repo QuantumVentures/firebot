@@ -5,9 +5,10 @@ FactoryGirl.define do
     Rails.root.join("spec/fixtures").join(path).to_s
   end
 
-  sequence(:email) { |n| "email-#{n}@example.com" }
-  sequence(:name)  { |n| "name-#{n}" }
-  sequence(:uid)   { |n| "uid-#{n}" }
+  sequence(:email)      { |n| "email-#{n}@example.com" }
+  sequence(:model_name) { |n| "name_#{n}" }
+  sequence(:name)       { |n| "name-#{n}" }
+  sequence(:uid)        { |n| "uid-#{n}" }
 
   factory :backend_app do
     description { generate :name }
@@ -38,7 +39,7 @@ FactoryGirl.define do
 
   factory :model do
     backend_app
-    name { generate :name }
+    name { generate :model_name }
   end
 
   factory :payment_method do

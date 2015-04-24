@@ -6,6 +6,11 @@ describe BackendApp do
   it_should_behave_like :crud
 
   it { should have_many(:access_tokens).dependent :destroy }
+  it { should have_many(:components).through :compositions }
+  it do
+    should have_many(:compositions).with_foreign_key(:composable_id)
+                                      .dependent :destroy
+  end
   it { should have_many(:features).dependent :destroy }
   it { should have_many(:logs).dependent :destroy }
   it { should have_many(:models).dependent :destroy }

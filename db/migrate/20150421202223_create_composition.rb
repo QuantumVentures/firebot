@@ -7,6 +7,7 @@ class CreateComposition < ActiveRecord::Migration
       t.timestamps null: false
     end
 
-    add_index :compositions, [:component_id, :composable_id], unique: true
+    add_index :compositions, %i(component_id composable_id composable_type),
+      name: "index_compositions_on_component_and_composable", unique: true
   end
 end

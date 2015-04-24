@@ -3,6 +3,14 @@ require "rails_helper"
 describe Component do
   it_should_behave_like :crud
 
+  it do
+    should have_many(:backend_apps).source(:composable)
+                                   .through :backend_app_compositions
+  end
+  it do
+    should have_many(:backend_app_compositions).class_name("Composition")
+                                               .dependent :destroy
+  end
   it { should have_many(:compositions).dependent :destroy }
   it do
     should have_many(:components).source(:composable).through :compositions
@@ -18,6 +26,8 @@ describe Component do
 
   it { should validate_presence_of :name }
   it { should validate_uniqueness_of :name }
+
+  it { should respond_to :apps }
 
   subject { build :component }
 

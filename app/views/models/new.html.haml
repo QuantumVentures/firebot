@@ -2,7 +2,7 @@
 
 .content__body
   %h3
-    = render "models/shared/index_breadcrumbs"
+    = render "backend_apps/shared/breadcrumbs"
     = link_to "Models", backend_app_models_path(@app)
     \- New
   .form
@@ -11,9 +11,9 @@
       .form__field
         .form__field__text
           %p
-            The name of the model will be capitalized.
-            For best practices, try to make the model name singular
-            (e.g. User, Car, Pet, etc.)
+            Model names can only have letters, numbers, and underscore.
+            Names must start with a letter.
+            Please use singular names (e.g. User, Car, Pet, etc.)
         = f.text_field :name, autocomplete: "off", class: "form__input--width",
           placeholder: "The name of your model"
       .form__field

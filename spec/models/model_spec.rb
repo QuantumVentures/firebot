@@ -34,13 +34,42 @@ describe Model do
     end
   end
 
-  describe ".before_save" do
-    it "should capitalize the name" do
-      name = subject.name
-      subject.save
-      expect(subject.name).to eq name.capitalize
+  describe "validate format of name" do
+    context "when name contains only letters, numbers, and underscores" do
+      it "should be valid" do
+        subject.name = "name"
+        expect(subject.valid?).to be true
+      end
     end
 
+    context "when name doesn't start with a letter" do
+      it "should not be valid" do
+        subject.name = "_name"
+        expect(subject.valid?).to be false
+      end
+
+      it "should not be valid" do
+        subject.name = "1name"
+        expect(subject.valid?).to be false
+      end
+    end
+
+    context "when name ends with an underscore" do
+      it "should not be valid" do
+        subject.name = "name_"
+        expect(subject.valid?).to be false
+      end
+    end
+
+    context "when name contains invalid characters" do
+      it "should not be valid" do
+        subject.name = "name + !"
+        expect(subject.valid?).to be false
+      end
+    end
+  end
+
+  describe ".before_save" do
     it "should set created_at, id, and updated_at in the schema" do
       subject.save
       expect(subject.schema["created_at"]["type"]).to eq "date"

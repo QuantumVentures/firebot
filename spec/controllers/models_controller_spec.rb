@@ -107,7 +107,7 @@ describe ModelsController do
   end
 
   describe "PATCH update" do
-    let(:name) { "new name".capitalize }
+    let(:name) { "new_name" }
 
     subject do
       patch :update, backend_app_id: backend_app.id, id: model.id,

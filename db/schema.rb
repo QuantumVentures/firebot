@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 20150421202223) do
     t.datetime "updated_at",      null: false
   end
 
-  add_index "compositions", ["component_id", "composable_id"], name: "index_compositions_on_component_id_and_composable_id", unique: true, using: :btree
+  add_index "compositions", ["component_id", "composable_id", "composable_type"], name: "index_compositions_on_component_and_composable", unique: true, using: :btree
 
   create_table "logs", force: :cascade do |t|
     t.integer  "loggable_id"

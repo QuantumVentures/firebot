@@ -1,3 +1,5 @@
+# User
+#-------------------------------------------------------------------------------
 user = User.create!(
   email:      "john@gmail.com",
   first_name: "John",
@@ -5,6 +7,8 @@ user = User.create!(
   password:   "12"
 )
 
+# Backend app
+#-------------------------------------------------------------------------------
 app = user.apps.create!(
   description: "People can buy used cars from others",
   name:        "Used Car Marketplace",
@@ -14,6 +18,8 @@ app = user.apps.create!(
   }
 )
 
+# Model
+#-------------------------------------------------------------------------------
 model = app.models.new name: "Car"
 model.add_column :condition, required: true, type: "string"
 model.add_column :features, required: false, type: "array"
@@ -27,3 +33,42 @@ model.add_column :year, required: true, type: "number"
 model.save!
 
 token = user.access_tokens.create! tokenable: app
+
+# Components
+#-------------------------------------------------------------------------------
+# Users
+component_users = Component.create! name: "User"
+user_model = Model.new name: "User"
+user_model.add_column :email, required: true, type: "string"
+user_model.add_column :first_name, type: "string"
+user_model.add_column :last_name, type: "string"
+user_model.add_column :password, required: true, type: "string"
+user_model.add_column :phone_number, type: "string"
+component_users.add_model user_model
+component_users.save!
+
+# Authentication
+component_auth = Component.create! name: "Authentication"
+auth_model = Model.new name: "Authentication"
+auth_model.add_column :expires_at, required: true, type: "date"
+auth_model.add_column :token, required: true, type: "string"
+auth_model.add_column :user, required: true, relationship_to: "User",
+                             type: "relation"
+component_auth.add_model auth_model
+component_auth.save!
+# Composition
+component_auth.compositions.create! composable: component_users
+
+# Feedback
+feedback = Component.create! name: "Feedback"
+feedback_model = Model.new name: "Feedback"
+feedback_model.add_column :body, required: true, type: "string"
+feedback_model.add_column :email, type: "string"
+feedback.add_model feedback_model
+feedback.save!
+
+
+# Backend app components
+#-------------------------------------------------------------------------------
+Composition.create! component: component_auth, composable: app
+Composition.create! component: feedback, composable: app
