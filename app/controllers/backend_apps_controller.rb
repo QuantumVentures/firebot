@@ -16,6 +16,9 @@ class BackendAppsController < ApplicationController
   end
 
   def documentation
+    @access_token = @app.access_tokens.where(user_id: current_user.id)
+                                      .most_recent
+    @models = @app.models.order name: :asc
   end
 
   def edit
