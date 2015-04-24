@@ -1,8 +1,4 @@
 class BackendApp < ActiveRecord::Base
-  include ApplicationModel
-
-  restoreable
-
   with_options dependent: :destroy do
     has_many :access_tokens, as: :tokenable
     has_many :compositions, -> { where composable_type: "BackendApp" },
@@ -28,15 +24,25 @@ class BackendApp < ActiveRecord::Base
 
   def remove_component(component)
     composition = compositions.find_by component_id: component.id
+    composition.models.each do |model|
+      model.destroy
+    end
     composition.destroy
   end
 
   private
 
   def add_models_from_component(component, composition)
+    add_model_from_components component.components, composition
     component.models.each do |name, schema|
       model = models.new name: name, schema: schema
       model.model_compositions.create(composition: composition) if model.save
+    end
+  end
+
+  def add_model_from_components(components, composition)
+    components.each do |component|
+      add_models_from_component component, composition
     end
   end
 

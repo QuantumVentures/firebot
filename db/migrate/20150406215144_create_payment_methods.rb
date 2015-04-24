@@ -6,12 +6,10 @@ class CreatePaymentMethods < ActiveRecord::Migration
       t.string     :name
       t.string     :type
       t.string     :uid
-      t.datetime   :deleted_at
 
       t.timestamps null: false
     end
 
-    add_index :payment_methods, :deleted_at, where: "deleted_at IS NULL"
     add_index :payment_methods, :liable_id
     add_index :payment_methods, :type
   end

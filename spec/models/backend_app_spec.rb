@@ -23,7 +23,7 @@ describe BackendApp do
 
   it { should validate_presence_of :name }
   it { should validate_presence_of :user }
-  it { should validate_uniqueness_of(:name).scoped_to(:user_id) }
+  it { should validate_uniqueness_of(:name).scoped_to :user_id }
 
   it { should be_valid }
 
@@ -36,9 +36,16 @@ describe BackendApp do
   end
 
   describe "#add_component" do
+    let(:component2) { create :component }
+    let(:model2)     { create :model }
+    let(:model3)     { create :model }
+
     before do
       component.add_model model
       component.save
+      component2.add_model model2
+      component2.save
+      component.add_component component2
       backend_app.add_component component
     end
 
@@ -47,8 +54,9 @@ describe BackendApp do
         expect(backend_app.components).to include component
       end
 
-      it "should create models for the app" do
+      it "should create models for the app from all the components" do
         expect(backend_app.models.find_by(name: model.name)).not_to be_nil
+        expect(backend_app.models.find_by(name: model2.name)).not_to be_nil
       end
 
       it "should connect the model with the composition" do
@@ -60,10 +68,8 @@ describe BackendApp do
     end
 
     context "when component has already been added to the app" do
-      let(:model2) { create :model }
-
       before do
-        component.add_model model2
+        component.add_model model3
         component.save
         backend_app.add_component component
       end
@@ -73,7 +79,7 @@ describe BackendApp do
       end
 
       it "should not create models for the app" do
-        expect(backend_app.models.find_by(name: model2.name)).to be_nil
+        expect(backend_app.models.find_by(name: model3.name)).to be_nil
       end
     end
   end
@@ -91,7 +97,7 @@ describe BackendApp do
     end
 
     it "should destroy all models connected to the composition" do
-      expect{action}.to change{composition.models.size}.by -1
+      expect{action}.to change{backend_app.models.size}.by -1
     end
 
     it "should destroy the composition" do

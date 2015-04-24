@@ -6,13 +6,12 @@ class CreateLogs < ActiveRecord::Migration
       t.string     :type,        null: false
       t.text       :description
       t.datetime   :completed_at
-      t.datetime   :deleted_at
 
       t.timestamps null: false
     end
 
-    add_index :logs, :deleted_at, where: "deleted_at IS NULL"
     add_index :logs, :loggable_id
+    add_index :logs, :loggable_type
     add_index :logs, :type
   end
 end

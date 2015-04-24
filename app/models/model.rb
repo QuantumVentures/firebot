@@ -1,8 +1,6 @@
 class Model < ActiveRecord::Base
   include ApplicationModel
 
-  restoreable
-
   has_many :compositions, through: :model_compositions
   has_many :model_compositions, dependent: :destroy
 
@@ -11,7 +9,7 @@ class Model < ActiveRecord::Base
   validate :column_types
   validates_format_of :name, with: /\A[A-Za-z][A-Za-z0-9]*(?:_[A-Za-z0-9]+)*\z/
   validates_presence_of :backend_app, :name
-  validates_uniqueness_of :name, scope: :backend_app, case_sensitive: false
+  validates_uniqueness_of :name, scope: :backend_app_id, case_sensitive: false
 
   before_validation :set_default_json
   before_save :set_default_schema

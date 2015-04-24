@@ -4,7 +4,6 @@ describe Model do
   subject { build :model }
 
   it_should_behave_like :crud
-  it_should_behave_like :restoreable
 
   it { should have_many(:compositions).through :model_compositions }
   it { should have_many(:model_compositions).dependent :destroy }

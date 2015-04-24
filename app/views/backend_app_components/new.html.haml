@@ -3,7 +3,7 @@
 .content__body
   %h3
     = render "backend_apps/shared/breadcrumbs"
-    = link_to "Components", index_backend_app_components_path(@app)
+    = link_to "Components", backend_app_components_path(@app)
     \-
     Add Component
   %p
@@ -17,10 +17,9 @@
             \-
             %i
               = component.description
-            = form_for :composition,
-              url: backend_app_compositions_path(@app) do |f|
-              = f.hidden_field :component_id, value: component.id
-              = f.button "Add component"
+            = form_tag backend_app_components_path(@app) do
+              = hidden_field_tag :component_id, component.id
+              = button_tag "Add component"
           - components.each do |comp|
             %p
               \-

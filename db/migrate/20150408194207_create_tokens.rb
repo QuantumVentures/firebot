@@ -7,13 +7,11 @@ class CreateTokens < ActiveRecord::Migration
       t.string     :type,      null: false
       t.string     :tokenable_uid
       t.jsonb      :metadata,  null: false, default: {}
-      t.datetime   :deleted_at
       t.datetime   :expires_at
 
       t.timestamps null: false
     end
 
-    add_index :tokens, :deleted_at, where: "deleted_at IS NULL"
     add_index :tokens, :tokenable_id
     add_index :tokens, :tokenable_type
     add_index :tokens, %i(token type), unique: true

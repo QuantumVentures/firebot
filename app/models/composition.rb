@@ -1,6 +1,4 @@
 class Composition < ActiveRecord::Base
-  include ApplicationModel
-
   with_options dependent: :destroy do
     has_many :models, through: :model_compositions
     has_many :model_compositions

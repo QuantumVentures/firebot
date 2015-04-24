@@ -1,6 +1,4 @@
 class Component < ActiveRecord::Base
-  include ApplicationModel
-
   has_many :backend_apps, source: :composable, source_type: "BackendApp",
                           through: :backend_app_compositions
   has_many :backend_app_compositions,
@@ -24,6 +22,10 @@ class Component < ActiveRecord::Base
   before_validation :set_default_json
 
   alias_method :apps, :backend_apps
+
+  def add_component(component)
+    compositions.create composable: component
+  end
 
   def add_model(model)
     self.models[model.name] = model.schema

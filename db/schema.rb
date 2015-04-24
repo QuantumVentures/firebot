@@ -22,12 +22,10 @@ ActiveRecord::Schema.define(version: 20150424143644) do
     t.string   "uid"
     t.text     "description"
     t.jsonb    "metadata",    default: {}, null: false
-    t.datetime "deleted_at"
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
   end
 
-  add_index "backend_apps", ["deleted_at"], name: "index_backend_apps_on_deleted_at", where: "(deleted_at IS NULL)", using: :btree
   add_index "backend_apps", ["name", "user_id"], name: "index_backend_apps_on_name_and_user_id", unique: true, using: :btree
   add_index "backend_apps", ["uid"], name: "index_backend_apps_on_uid", unique: true, using: :btree
 
@@ -59,13 +57,12 @@ ActiveRecord::Schema.define(version: 20150424143644) do
     t.string   "type",             null: false
     t.text     "description"
     t.datetime "completed_at"
-    t.datetime "deleted_at"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
   end
 
-  add_index "logs", ["deleted_at"], name: "index_logs_on_deleted_at", where: "(deleted_at IS NULL)", using: :btree
   add_index "logs", ["loggable_id"], name: "index_logs_on_loggable_id", using: :btree
+  add_index "logs", ["loggable_type"], name: "index_logs_on_loggable_type", using: :btree
   add_index "logs", ["type"], name: "index_logs_on_type", using: :btree
 
   create_table "model_compositions", force: :cascade do |t|
@@ -82,13 +79,11 @@ ActiveRecord::Schema.define(version: 20150424143644) do
     t.jsonb    "schema",         default: {}, null: false
     t.string   "name",                        null: false
     t.text     "description"
-    t.datetime "deleted_at"
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
   end
 
   add_index "models", ["backend_app_id", "name"], name: "index_models_on_backend_app_id_and_name", unique: true, using: :btree
-  add_index "models", ["deleted_at"], name: "index_models_on_deleted_at", where: "(deleted_at IS NULL)", using: :btree
 
   create_table "payment_methods", force: :cascade do |t|
     t.integer  "liable_id"
@@ -97,12 +92,10 @@ ActiveRecord::Schema.define(version: 20150424143644) do
     t.string   "name"
     t.string   "type"
     t.string   "uid"
-    t.datetime "deleted_at"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
 
-  add_index "payment_methods", ["deleted_at"], name: "index_payment_methods_on_deleted_at", where: "(deleted_at IS NULL)", using: :btree
   add_index "payment_methods", ["liable_id"], name: "index_payment_methods_on_liable_id", using: :btree
   add_index "payment_methods", ["type"], name: "index_payment_methods_on_type", using: :btree
 
@@ -114,13 +107,11 @@ ActiveRecord::Schema.define(version: 20150424143644) do
     t.string   "type",                        null: false
     t.string   "tokenable_uid"
     t.jsonb    "metadata",       default: {}, null: false
-    t.datetime "deleted_at"
     t.datetime "expires_at"
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
   end
 
-  add_index "tokens", ["deleted_at"], name: "index_tokens_on_deleted_at", where: "(deleted_at IS NULL)", using: :btree
   add_index "tokens", ["token", "type"], name: "index_tokens_on_token_and_type", unique: true, using: :btree
   add_index "tokens", ["tokenable_id"], name: "index_tokens_on_tokenable_id", using: :btree
   add_index "tokens", ["tokenable_type"], name: "index_tokens_on_tokenable_type", using: :btree

@@ -59,7 +59,7 @@ auth_model.add_column :user, required: true, relationship_to: "User",
 component_auth.add_model auth_model
 component_auth.save!
 # Composition
-component_auth.compositions.create! composable: component_users
+component_auth.add_component component_users
 
 # Feedback
 feedback = Component.create! name: "Feedback",

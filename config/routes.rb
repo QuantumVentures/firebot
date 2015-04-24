@@ -9,20 +9,8 @@ Rails.application.routes.draw do
   get "sign-up" => "users#new", as: :new_user
 
   resources :backend_apps, path: "apps" do
-    resources :components, only: %i() do
-      collection do
-        get :app_index, as: :index, path: "/"
-        get :app_new, as: :new, path: "/new"
-      end
-      member do
-        get :app_show, as: "", path: ""
-      end
-    end
-    resources :compositions, only: %i(create) do
-      collection do
-        delete :destroy
-      end
-    end
+    resources :components, controller: :backend_app_components,
+                           only: %i(create destroy index new show)
     resources :features, only: %i(create new)
     resources :models do
       member do

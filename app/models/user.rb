@@ -14,10 +14,9 @@ class User < ActiveRecord::Base
 
   validate :validate_password_create, on: :create
   validate :validate_password_update, on: :update
-  validates :email, presence: true, length: { maximum: 255 },
-                    format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i },
-                    uniqueness: { case_sensitive: false }
-  validates_presence_of :first_name, :last_name
+  validates_format_of :email, with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  validates_presence_of :email, :first_name, :last_name
+  validates_uniqueness_of :email, scope: :deleted_at, case_sensitive: false
 
   has_secure_password validations: false
 

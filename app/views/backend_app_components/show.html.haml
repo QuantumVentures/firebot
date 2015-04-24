@@ -3,7 +3,7 @@
 .content__body
   %h3
     = render "backend_apps/shared/breadcrumbs"
-    = link_to "Components", index_backend_app_components_path(@app)
+    = link_to "Components", backend_app_components_path(@app)
     \-
     = @component.name
   %p

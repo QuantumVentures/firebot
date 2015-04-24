@@ -6,6 +6,7 @@ describe User do
   it { should be_valid }
 
   it_should_behave_like :crud
+  it_should_behave_like :restoreable
 
   it { should have_many(:access_tokens).dependent :destroy }
   it { should have_many(:backend_apps).dependent :destroy }
@@ -17,7 +18,10 @@ describe User do
   it { should validate_presence_of :email }
   it { should validate_presence_of :first_name }
   it { should validate_presence_of :last_name }
-  it { should validate_uniqueness_of :email }
+  it do
+    should validate_uniqueness_of(:email).scoped_to(:deleted_at)
+                                         .case_insensitive
+  end
 
   it { should respond_to :apps }
 

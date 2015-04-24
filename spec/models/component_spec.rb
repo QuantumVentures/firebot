@@ -52,6 +52,19 @@ describe Component do
     end
   end
 
+  describe "#add_component" do
+    let(:component) { create :component }
+
+    before do
+      subject.save
+      subject.add_component component
+    end
+
+    it "should include the component in components" do
+      expect(subject.components).to include component
+    end
+  end
+
   describe "#add_model" do
     let(:model) { create :model }
 

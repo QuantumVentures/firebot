@@ -6,12 +6,12 @@ describe Token do
   subject { build :token }
 
   it_should_behave_like :crud
-  it_should_behave_like :restoreable
 
   it { should belong_to(:tokenable).touch }
   it { should belong_to :user }
 
   it { should validate_presence_of :user }
+  it { should validate_uniqueness_of :token }
 
   describe ".before_create" do
     context "#expires_at" do
@@ -84,7 +84,7 @@ describe Token do
   end
 
   describe "#expire!" do
-    attributes = %i(expires_at deleted_at updated_at)
+    attributes = %i(expires_at updated_at)
 
     it "should touch #{attributes.to_sentence}" do
       Timecop.freeze do

@@ -1,13 +1,13 @@
 class Token < ActiveRecord::Base
   include ApplicationModel
 
+  inheritable
+
   belongs_to :tokenable, polymorphic: true, touch: true
   belongs_to :user
 
-  inheritable
-  restoreable
-
   validates_presence_of :user
+  validates_uniqueness_of :token
 
   before_create :generate_token, unless: :token?
   before_create :set_expiration, if: :lifespan

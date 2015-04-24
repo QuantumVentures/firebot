@@ -2,7 +2,6 @@ class Log < ActiveRecord::Base
   include ApplicationModel
 
   inheritable
-  restoreable
 
   belongs_to :loggable,    polymorphic: true
   belongs_to :responsible, polymorphic: true

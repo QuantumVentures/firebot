@@ -55,6 +55,9 @@ $hero__background__content__image-height: $spacing * 5;
         padding: $spacing * 0.75 $spacing;
         text-align: center;
         width: $spacing * 10;
+        &:hover {
+          text-decoration: none;
+        }
       }
     }
   }
