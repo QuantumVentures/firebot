@@ -73,5 +73,5 @@ feedback.save!
 
 # Backend app components
 #-------------------------------------------------------------------------------
-Composition.create! component: component_auth, composable: app
-Composition.create! component: feedback, composable: app
+app.add_component component_auth
+app.add_component feedback

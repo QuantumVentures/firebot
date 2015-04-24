@@ -1,6 +1,10 @@
 require "rails_helper"
 
 describe BackendApp do
+  let(:backend_app) { create :backend_app }
+  let(:component)   { create :component }
+  let(:model)       { create :model }
+
   subject { build :backend_app }
 
   it_should_behave_like :crud
@@ -28,6 +32,70 @@ describe BackendApp do
 
     it "should set the uid" do
       expect(subject.uid).not_to be_nil
+    end
+  end
+
+  describe "#add_component" do
+    before do
+      component.add_model model
+      component.save
+      backend_app.add_component component
+    end
+
+    context "when component has not been added to the app" do
+      it "should change the size of the app's components" do
+        expect(backend_app.components).to include component
+      end
+
+      it "should create models for the app" do
+        expect(backend_app.models.find_by(name: model.name)).not_to be_nil
+      end
+
+      it "should connect the model with the composition" do
+        comp = backend_app.compositions.find_by component_id: component.id
+        expect(comp.models).to include(
+          backend_app.models.find_by name: model.name
+        )
+      end
+    end
+
+    context "when component has already been added to the app" do
+      let(:model2) { create :model }
+
+      before do
+        component.add_model model2
+        component.save
+        backend_app.add_component component
+      end
+
+      it "should not change the size of the apps' components" do
+        expect(backend_app.components.size).to eq 1
+      end
+
+      it "should not create models for the app" do
+        expect(backend_app.models.find_by(name: model2.name)).to be_nil
+      end
+    end
+  end
+
+  describe "#remove_component" do
+    let(:action) { backend_app.remove_component component }
+    let(:composition) do
+      backend_app.compositions.find_by component_id: component.id
+    end
+
+    before do
+      component.add_model model
+      component.save
+      backend_app.add_component component
+    end
+
+    it "should destroy all models connected to the composition" do
+      expect{action}.to change{composition.models.size}.by -1
+    end
+
+    it "should destroy the composition" do
+      expect{action}.to change backend_app.compositions, :size
     end
   end
 end
