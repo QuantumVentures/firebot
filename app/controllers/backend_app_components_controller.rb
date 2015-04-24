@@ -14,7 +14,7 @@ class BackendAppComponentsController < ApplicationController
 
   def destroy
     @app.remove_component @component
-    flash[:success] = "Component removed"
+    flash[:notice] = "Component removed"
     redirect_to backend_app_components_path @app
   end
 
@@ -44,7 +44,7 @@ class BackendAppComponentsController < ApplicationController
   def find_component
     @component = @app.components.find_by id: params[:id]
     if @component.nil?
-      flash[:error] = "Component not found"
+      flash[:notice] = "Component not found"
       redirect_to backend_app_components_path @app
     end
   end

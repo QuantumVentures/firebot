@@ -11,6 +11,10 @@
   @extend .flash;
   background-color: $red;
 }
+.flash--notice {
+  @extend .flash;
+  background-color: $orange;
+}
 .flash--success {
   @extend .flash;
   background-color: $green;
