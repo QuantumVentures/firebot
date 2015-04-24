@@ -43,6 +43,11 @@ FactoryGirl.define do
     name { generate :model_name }
   end
 
+  factory :model_composition do
+    composition
+    model
+  end
+
   factory :payment_method do
     liable factory: :user
     uid { generate :uid }

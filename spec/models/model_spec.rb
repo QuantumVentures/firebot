@@ -6,13 +6,17 @@ describe Model do
   it_should_behave_like :crud
   it_should_behave_like :restoreable
 
+  it { should have_many(:compositions).through :model_compositions }
+  it { should have_many(:model_compositions).dependent :destroy }
+
   it { should belong_to :backend_app }
 
   it { should validate_presence_of :backend_app }
   it { should validate_presence_of :name }
-  it { should validate_uniqueness_of(:name)
-              .scoped_to(:backend_app_id)
-              .case_insensitive }
+  it do
+    should validate_uniqueness_of(:name).scoped_to(:backend_app_id)
+                                        .case_insensitive
+  end
 
   describe "validate :column_types" do
     let(:column_type) { "string" }

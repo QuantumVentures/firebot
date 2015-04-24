@@ -3,6 +3,9 @@ class Model < ActiveRecord::Base
 
   restoreable
 
+  has_many :compositions, through: :model_compositions
+  has_many :model_compositions, dependent: :destroy
+
   belongs_to :backend_app
 
   validate :column_types

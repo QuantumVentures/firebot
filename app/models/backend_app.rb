@@ -21,6 +21,29 @@ class BackendApp < ActiveRecord::Base
 
   before_create :set_uid
 
+  # def add_component(component)
+  #   composition = Composition.new component: component, composable: self
+  #   add_models_from_component(component) if composition.save
+  # end
+
+  # def add_models_from_component(component)
+  #   component.models.each do |name, schema|
+  #     model = models.new name: name, schema: schema
+  #     if model.save
+
+  #     end
+  #   end
+  # end
+
+  # def remove_component(component)
+  #   composition = compositions.find_by(component_id: component.id)
+  #   remove_models_from_component(component) if composition.destroy
+  # end
+
+  # def remove_models_from_component(component)
+
+  # end
+
   private
 
   def set_uid

@@ -37,7 +37,7 @@ token = user.access_tokens.create! tokenable: app
 # Components
 #-------------------------------------------------------------------------------
 # Users
-component_users = Component.create! name: "User",
+component_users = Component.create! name: "Users",
   description: "Store user information and login credentials."
 user_model = Model.new name: "User"
 user_model.add_column :email, required: true, type: "string"

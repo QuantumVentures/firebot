@@ -3,6 +3,12 @@ require "rails_helper"
 describe Composition do
   it_should_behave_like :crud
 
+  it do
+    should have_many(:models).dependent(:destroy)
+                             .through :model_compositions
+  end
+  it { should have_many(:model_compositions).dependent :destroy }
+
   it { should belong_to :component }
   it { should belong_to :composable }
 
