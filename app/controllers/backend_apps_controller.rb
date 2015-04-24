@@ -19,7 +19,7 @@ class BackendAppsController < ApplicationController
   end
 
   def index
-    @apps = current_user.apps
+    @apps = current_user.apps.order(name: :asc).decorate
   end
 
   def new

@@ -13,9 +13,9 @@
           %li
             %p
               = link_to app.name, app
-              - if app.description.present?
-                %p
-                  = app.description
+              \-
+              %i
+                = app.description
   - else
     %p
       You have no apps, create a
