@@ -9,7 +9,7 @@ describe BackendApp do
   it { should have_many(:components).through :compositions }
   it do
     should have_many(:compositions).with_foreign_key(:composable_id)
-                                      .dependent :destroy
+                                   .dependent :destroy
   end
   it { should have_many(:features).dependent :destroy }
   it { should have_many(:logs).dependent :destroy }
