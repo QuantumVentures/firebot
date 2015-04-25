@@ -1,0 +1,15 @@
+= content_for :page_title, "Help"
+
+.content__body
+  %h3
+    Need help?
+  %p
+    Call or email us anytime, anywhere
+  .content__body__list
+    %ol
+      %li
+        %p
+          (408) 317 - 8640
+      %li
+        %p
+          = mail_to "hello@firebot.io", "hello@firebot.io", subject: "Help"

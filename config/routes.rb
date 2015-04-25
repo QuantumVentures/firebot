@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   root "home#index"
 
+  # Help
+  get "help" => "help#index", as: :help
+
   # Sessions
   get "login"  => "sessions#login",  as: :login
   get "logout" => "sessions#logout", as: :logout
