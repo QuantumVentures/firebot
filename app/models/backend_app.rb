@@ -22,6 +22,10 @@ class BackendApp < ActiveRecord::Base
     add_models_from_component(component, composition) if composition.save
   end
 
+  def components_count
+    count_all_components components
+  end
+
   def remove_component(component)
     composition = compositions.find_by component_id: component.id
     composition.models.each do |model|
@@ -44,6 +48,14 @@ class BackendApp < ActiveRecord::Base
     components.each do |component|
       add_models_from_component component, composition
     end
+  end
+
+  def count_all_components(comps)
+    total = comps.size
+    comps.each do |component|
+      total += count_all_components component.components
+    end
+    total
   end
 
   def set_uid

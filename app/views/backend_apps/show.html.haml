@@ -13,9 +13,11 @@
       %li
         %p
           = link_to "Components", backend_app_components_path(@app)
+          (#{@components_count})
       %li
         %p
           = link_to "Models", backend_app_models_path(@app)
+          (#{@models_count})
       %li
         %p
           = link_to "Documentation", documentation_backend_app_path(@app)

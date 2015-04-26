@@ -33,6 +33,8 @@ class BackendAppsController < ApplicationController
   end
 
   def show
+    @components_count = @app.components_count
+    @models_count     = @app.models.size
   end
 
   def status
