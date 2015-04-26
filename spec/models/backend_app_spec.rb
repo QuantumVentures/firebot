@@ -84,6 +84,23 @@ describe BackendApp do
     end
   end
 
+  describe "#components_count" do
+    let(:component1) { create :component }
+    let(:component2) { create :component }
+    let(:component3) { create :component }
+
+    before do
+      subject.save
+      component1.add_component component2
+      subject.add_component component1
+      subject.add_component component3
+    end
+
+    it "should have 3 components" do
+      expect(subject.components_count).to eq 3
+    end
+  end
+
   describe "#remove_component" do
     let(:action) { backend_app.remove_component component }
     let(:composition) do
