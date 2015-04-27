@@ -7,10 +7,13 @@
       }
     }
     &.definition {
-      background-color: $blue-dark;
+      background-color: $blue;
       .section__content {
         color: $white;
-        max-width: $max-width * 0.8;
+        max-width: $max-width * 0.5;
+        p {
+          margin-top: $spacing * 1.5;
+        }
       }
     }
     &.features {
@@ -19,7 +22,6 @@
       }
     }
     &.start {
-      background-color: rgb(245, 245, 245);
       background-color: $gray-dark-1;
       border-bottom: 1px solid $gray-dark-3;
       .section__content {

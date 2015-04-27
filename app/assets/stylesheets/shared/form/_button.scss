@@ -17,6 +17,9 @@
   &:active, &:focus {
     outline: none;
   }
+  &:active {
+    border-color: $green-hover;
+  }
   &:hover {
     background-color: $green-hover;
     color: $white;
@@ -31,6 +34,9 @@ a.form__button {
   @extend .form__button;
   background-color: $gray-light-2;
   border-color: $gray-medium-2;
+  &:active {
+    border-color: $gray-light-2-hover;
+  }
   &:hover {
     background-color: $gray-light-2-hover;
   }
@@ -39,6 +45,9 @@ a.form__button {
   @extend .form__button;
   background-color: $blue;
   border-color: $blue-dark;
+  &:active {
+    border-color: $blue-hover;
+  }
   &:hover {
     background-color: $blue-hover;
   }
