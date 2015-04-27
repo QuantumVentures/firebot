@@ -22,6 +22,10 @@ $ docker run -e DB_HOST=[ip] -e DB_PORT=[port] -e DB_PASSWORD=[password] -e DB_U
 $ docker run -d -p 8080:8080 -e DB_HOST=[ip] -e DB_PORT=[port] -e DB_PASSWORD=[password] -e DB_USERNAME=[username] --name app [tag_name]
 ```
 
+#### Nginx link to app
+```
+$ docker run -d -p 80:80 --link app:app --volumes-from app --name nginx-unicorn dangerous/nginx-unicorn
+
 ## CoreOS Cloud Config
 ```
 #cloud-config

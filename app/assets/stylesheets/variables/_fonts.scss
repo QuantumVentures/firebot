@@ -16,19 +16,19 @@ $font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 
 @font-face {
   font-family: "Existence Light";
-  src: url("existence/Existence-Light.otf") format("opentype");
+  src: font-url("existence/Existence-Light.otf") format("opentype");
 }
 @font-face {
   font-family: "Roboto Light";
-  src: url("roboto/Roboto-Light.ttf") format("truetype");
+  src: font-url("roboto/Roboto-Light.ttf") format("truetype");
 }
 @font-face {
   font-family: "Roboto Medium";
-  src: url("roboto/Roboto-Medium.ttf") format("truetype");
+  src: font-url("roboto/Roboto-Medium.ttf") format("truetype");
 }
 @font-face {
   font-family: "Roboto Regular";
-  src: url("roboto/Roboto-Regular.ttf") format("truetype");
+  src: font-url("roboto/Roboto-Regular.ttf") format("truetype");
 }
 
 @mixin existence-light {
