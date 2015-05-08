@@ -5,7 +5,7 @@
     Login to Firebot
   = form_tag sessions_path do
     .form__field
-      = text_field_tag :email, "",
+      = text_field_tag :email, @email,
         class: "form__input--medium form__input--width",
         placeholder: "Email", type: "email"
     .form__field
@@ -16,9 +16,9 @@
       class: "form__button--medium form__button--width"
 
 = content_for :form_footer do
-  .form__footer--left
-    %p
-      = link_to "Forgot password", "#"
+  -# .form__footer--left
+  -#   %p
+  -#     = link_to "Forgot password", "#"
   .form__footer--right
     %p
       Don't have an account?

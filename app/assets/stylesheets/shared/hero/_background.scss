@@ -17,7 +17,6 @@ $hero__background__content__image-height: $spacing * 5;
   }
   .hero__background__image {
     @include background-image-default;
-    background-image: image-url("pages/index/background.jpg");
     z-index: 0;
   }
   .hero__background__content {

@@ -8,6 +8,7 @@ class SessionsController < ApplicationController
       log_in user
       redirect_to backend_apps_path
     else
+      @email  = params[:email]
       @errors = "Invalid email and/or password"
       render "login"
     end
